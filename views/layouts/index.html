@@ -125,7 +125,8 @@
                         </div>
                     </div>
                     <input type="checkbox" id="termsConditions">
-                    <label for="termsConditions">Agree to the <a href="/termsAndConditions" target="_blank">terms and conditions</a> </label><br><br>
+                    <label for="termsConditions">Agree to the <a href="/termsAndConditions" target="_blank">terms and conditions</a></label>
+                    <br><br>
                     <input type="hidden" name="paymentMethod" id="paymentMethodToBackend">
                     <input type="hidden" name="dateAndTime" id="dateAndTime">
                     <input type="hidden" name="totalPrice" id="totalPriceToBack">
@@ -152,6 +153,13 @@
             }
             body .item{
                 margin: 80px 0;
+                height: 400px;
+            }
+            body .item p{
+                font-size: 45px;
+            }
+            body .item h3{
+                font-size: 70px;
             }
             body #addToCart{
                 font-size: 30px;
@@ -168,6 +176,61 @@
                 width: 80px;
                 height: 80px;
                 font-size: 40px;
+            }
+            body #slideShowContainer{
+                height: 700px;
+            }
+            body .itemInCart{
+                padding: 30px 50px;
+            }
+            body .itemInCart p{
+                font-size: 40px;
+            }
+            body .itemInCart > div > button{
+                height: 50px;
+                width: 50px;
+                font-size: 40px;
+            }
+            body #toPurchase > button{
+                font-size: 50px;
+            }
+            body #backToItems{
+                font-size: 40px;
+            }
+            body #paymentSectionForm{
+                padding: 50px;
+            }
+            body #orderInfo input{
+                font-size: 40px;
+                width: 100%
+            }
+            body #paymentMethodsSliderSmall p{
+                font-size: 35px;
+            }
+            body #paymentMethodsSliderSmall h1{
+                font-size: 45px;
+            }
+            body #orderPaymentMethods{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            body #orderPaymentMethods u{
+                font-size: 40px;
+                padding: 10px 0;
+            }
+            body #termsConditions{
+                width: 30px;
+                height: 30px;
+            }
+            body label, body a{
+                font-size: 40px;
+                padding: 0 0 0 10px;
+                text-decoration: none;
+            }
+            body #sendOrder{
+                font-size: 50px;
+                padding: 10px 0;
             }
         }
 
@@ -201,7 +264,6 @@
             cursor: pointer;
         }
         a{
-            text-decoration: underline;
             color: blue;
             cursor: pointer;
         }
