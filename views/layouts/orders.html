@@ -18,6 +18,11 @@
         <div id="orderWrapper"></div>
     </body>
     <style>
+        @media only screen and (max-width: 1024px){
+            body #orderWrapper{
+                flex-direction: column;
+            }
+        }
         *{
             margin: 0;
             padding: 0;
@@ -114,7 +119,7 @@
     </style>
     <script>
 
-        var socket = io.connect('https://mustafaaltaierestaurant.herokuapp.com/');
+        var socket = io.connect('http://mustafaaltaierestaurant.herokuapp.com/');
 
         for(i = 0; i < document.getElementsByClassName('_idBD').length; i++){
             var order = document.createElement('div');
