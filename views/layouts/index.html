@@ -139,40 +139,32 @@
     </body>
     <style>
         @media only screen and (max-width: 1024px){
-            body #mainSection{
+            body #mainSection, body #orderPaymentMethods{
                 flex-direction: column;
             }
-            body #foodSection{
+            body #foodSection, body #cartContainer{
                 width: 100%;
             }
-            body h3{
+            body h3, body .item p, body #addToCart, body #cartContainer p, body #redCircle, body .itemInCart p, body .itemInCart > div > button, body #orderInfo input, body #backToItems, body #orderPaymentMethods u, body label, body a, body #paymentMethodsSliderSmall h1, body .item h3, body #toPurchase > button, body #sendOrder{
                 font-size: 40px;
             }
-            body .item{
-                margin: 80px 0;
-                height: 400px;
+            body #openingTimeList p, body #paymentMethodsSliderSmall p{
+                font-size: 30px;
             }
             body .item p{
-                font-size: 45px;
-            }
-            body .item h3{
-                font-size: 70px;
+                font-weight: normal;
             }
             body #addToCart{
-                font-size: 30px;
-                padding: 20px 0;
-            }
-            body #cartContainer{
-                width: 100%;
+                padding: 30px 0;
             }
             body #cart{
                 width: 90px;
                 height: 70px;
+                right: 20px;
             }
             body #redCircle{
                 width: 80px;
                 height: 80px;
-                font-size: 40px;
             }
             body #slideShowContainer{
                 height: 700px;
@@ -180,54 +172,28 @@
             body .itemInCart{
                 padding: 30px 50px;
             }
-            body .itemInCart p{
-                font-size: 40px;
-            }
             body .itemInCart > div > button{
                 height: 50px;
                 width: 50px;
-                font-size: 40px;
             }
-            body #toPurchase > button{
-                font-size: 50px;
-            }
-            body #backToItems{
-                font-size: 40px;
+            body .itemInCartTitle{
+                width: 400px;
             }
             body #paymentSectionForm{
-                padding: 50px;
+                padding: 100px;
             }
             body #orderInfo input{
-                font-size: 40px;
                 width: 100%
             }
-            body #paymentMethodsSliderSmall p{
-                font-size: 35px;
-            }
-            body #paymentMethodsSliderSmall h1{
-                font-size: 45px;
-            }
-            body #orderPaymentMethods{
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-            }
-            body #orderPaymentMethods u{
-                font-size: 40px;
-                padding: 10px 0;
+            body #orderPaymentMethods u, body #sendOrder{
+                padding: 20px 0;
             }
             body #termsConditions{
                 width: 30px;
                 height: 30px;
             }
             body label, body a{
-                font-size: 40px;
                 padding: 0 0 0 10px;
-                text-decoration: none;
-            }
-            body #sendOrder{
-                font-size: 50px;
-                padding: 10px 0;
             }
         }
 
@@ -263,6 +229,7 @@
         a{
             color: blue;
             cursor: pointer;
+            text-decoration: none;
         }
         #header{
             position: relative;
@@ -346,8 +313,15 @@
             height: 250px;
             width: 100%;
             cursor: pointer;
-            margin: 20px 0;
+            margin: 30px 0;
             display: flex;
+        }
+        .item p{
+            max-height: 150px;
+            overflow-y: scroll;
+        }
+        .item p::-webkit-scrollbar{
+            display: none;
         }
         .item > img{
             height: 100%;
@@ -555,6 +529,7 @@
         #paymentMethodsSliderMain{
             width: 600px;
             overflow-x: scroll;
+            pointer-events: none;
         }
         #paymentMethodsSliderMain::-webkit-scrollbar{
             display: none;
@@ -572,8 +547,13 @@
             height: 100%;
             display: flex;
         }
+        #paymentMethodsSliderSmall > div input{
+            pointer-events: all;
+        }
 
         #orderPaymentMethods{
+            display: flex;
+            gap: 10px;
             padding-top: 30px;
             border-top: solid 1px #111;
             text-align: center;
@@ -617,6 +597,10 @@
             text-align: center;
             background: #111;
             color: #fff;
+        }
+
+        #termsConditions, label{
+            pointer-events: all;
         }
     </style>
 
@@ -821,7 +805,7 @@
             else{
                 redCircle.style.width = '45px';
                 redCircle.style.height = '45px';
-                redCircle.style.left = '94%';
+                redCircle.style.left = '91%';
             }
             redCircle.style.top = 0;
             purchaseButtonStyle();
@@ -1035,7 +1019,7 @@
         document.getElementById('termsConditions').onchange = function(){
             if(termsConditions.checked == true){
                 sendOrder.style.background = '#12465e';
-                sendOrder.style.pointerEvents = 'unset';
+                sendOrder.style.pointerEvents = 'all';
             }
             else{
                 sendOrder.style.background = '#555';
