@@ -16,7 +16,9 @@
             </div>
 
             <div id="menu">
-                <div id="menuWrapper"></div>
+                <div id="menuWrapperMain">
+                    <div id="menuWrapper"></div>
+                </div>
             </div>
 
             {{#each optionList}}
@@ -139,35 +141,29 @@
     </body>
     <style>
         @media only screen and (max-width: 1024px){
+            body #bodySection{
+                position: relative;
+            }
             body #mainSection, body #orderPaymentMethods{
                 flex-direction: column;
             }
             body #foodSection, body #cartContainer{
                 width: 100%;
             }
-            body h3, body .item p, body #addToCart, body #cartContainer p, body #redCircle, body .itemInCart p, body .itemInCart > div > button, body #orderInfo input, body #backToItems, body #orderPaymentMethods u, body label, body a, body #paymentMethodsSliderSmall h1, body .item h3, body #toPurchase > button, body #sendOrder{
+            body #logoWrapper{
+                width: 90%;
+            }
+            body h3, body p, body .item p, body #addToCart, body #cartContainer p, body #redCircle, body .itemInCart p, body .itemInCart > div > button, body #orderInfo input, body #backToItems, body #orderPaymentMethods u, body label, body a, body #paymentMethodsSliderSmall h1, body .item h3, body #toPurchase > button, body #sendOrder, body #menuWrapper p{
                 font-size: 40px;
             }
             body #openingTimeList p, body #paymentMethodsSliderSmall p{
                 font-size: 30px;
             }
+            body .item{
+                margin: 50px 0;
+            }
             body .item p{
                 font-weight: normal;
-            }
-            body #addToCart{
-                padding: 30px 0;
-            }
-            body #cart{
-                width: 90px;
-                height: 70px;
-                right: 20px;
-            }
-            body #redCircle{
-                width: 80px;
-                height: 80px;
-            }
-            body #slideShowContainer{
-                height: 700px;
             }
             body .itemInCart{
                 padding: 30px 50px;
@@ -178,6 +174,24 @@
             }
             body .itemInCartTitle{
                 width: 400px;
+            }
+            body .priseTitleTextWrapper{
+                gap: 10px;
+            }
+            body #cart{
+                width: 90px;
+                height: 70px;
+                right: 40px;
+            }
+            body #redCircle{
+                width: 80px;
+                height: 80px;
+            }
+            body #slideShowContainer{
+                height: 700px;
+            }
+            body #paymentSection, body #menuWrapperMain::-webkit-scrollbar{
+                display: none;
             }
             body #paymentSectionForm{
                 padding: 100px;
@@ -265,14 +279,17 @@
         #menu{
             border-top: solid 1px #000;
             border-bottom: solid 1px #000;
-            overflow-x: scroll;
-            overflow-Y: hidden;
             background: #12465e;
         }
-        #menu::-webkit-scrollbar{
+        #menuWrapperMain{
+            width: 100%;
+            overflow-x: scroll;
+            overflow-Y: hidden;
+        }
+        #menuWrapperMain::-webkit-scrollbar{
             height: 10px;
         }
-        #menu::-webkit-scrollbar-thumb{
+        #menuWrapperMain::-webkit-scrollbar-thumb{
             border-radius: 10px;
             background: #fd0;;
         }
@@ -310,7 +327,7 @@
             padding: 50px 0;
         }
         .item{
-            height: 250px;
+            height: 200px;
             width: 100%;
             cursor: pointer;
             margin: 30px 0;
@@ -334,7 +351,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 50px;
+            gap: 30px;
             padding: 0 50px;
             pointer-events: none;
         }
@@ -597,6 +614,7 @@
             text-align: center;
             background: #111;
             color: #fff;
+            font-size: 20px;
         }
 
         #termsConditions, label{
@@ -805,7 +823,7 @@
             else{
                 redCircle.style.width = '45px';
                 redCircle.style.height = '45px';
-                redCircle.style.left = '91%';
+                redCircle.style.left = '89%';
             }
             redCircle.style.top = 0;
             purchaseButtonStyle();
@@ -986,6 +1004,7 @@
                 }, 150); 
             }
             else{
+                paymentSection.style.display = 'flex';
                 bodySection.style.display = 'none';
             }
         }
@@ -1000,6 +1019,7 @@
             }
             else{
                 bodySection.style.display = 'block';
+                paymentSection.style.display = 'none';
             }
         }
 
