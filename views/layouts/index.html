@@ -997,6 +997,9 @@
 
         //Pressing complete purchase button//
         document.getElementById('buyNowBtn').onclick = function(){
+            setTimeout(function(){
+                scrollPaymentSlide(2, 'Pay cash', 'paymentCashOption');
+            }, 100);
             if(window.matchMedia('(min-width: 1024px)').matches){
                bodySection.style.transform = 'translateX(-100%)';
                 setTimeout(function(){
@@ -1033,7 +1036,6 @@
             document.getElementById(btn).style.background = '#166881';
             paymentMethodToBackend.value = btn;
         }
-        scrollPaymentSlide(2, 'Pay cash', 'paymentCashOption');
 
         //Terms and conditions check//
         document.getElementById('termsConditions').onchange = function(){
