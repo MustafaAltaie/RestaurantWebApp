@@ -138,8 +138,12 @@ router.post('/sendOrder', function(req, res){
     newOrder.itemOrder = req.body.itemOrder;
     newOrder.totalPrice = req.body.totalPrice;
     newOrder.save(function(){
-        res.redirect('/');
+        res.redirect('/orderReceived/' + req.body.clientName);
     });
+});
+
+router.get('/orderReceived/:id', function(req, res){
+    res.render('./layouts/orderReceived', {clientName: req.params.id});
 });
 
 router.get('/orders', function(req, res){
