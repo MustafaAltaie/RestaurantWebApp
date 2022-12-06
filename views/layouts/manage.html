@@ -14,14 +14,14 @@
         {{/each}}
 
         <form action="/newClient" method="POST">
-            <input name="name" placeholder="Namn">
-            <input name="homeNumber" placeholder="Lägenhet nummer">
-            <input name="cityName" placeholder="Ort namn">
-            <input name="cityNumber" placeholder="Ort nummer">
-            <input name="rent" placeholder="Hyra">
-            <input name="streetName" placeholder="Gatu namn">
-            <input name="streetNumber" placeholder="Gatu nummer">
-            <button>Lägg till hyresgästen</button>
+            <input name="name" placeholder="Namn" class="inputBox">
+            <input name="homeNumber" placeholder="Lägenhet nummer" class="inputBox">
+            <input name="cityName" placeholder="Ort namn" class="inputBox">
+            <input name="cityNumber" placeholder="Ort nummer" class="inputBox">
+            <input name="rent" placeholder="Hyra" class="inputBox">
+            <input name="streetName" placeholder="Gatu namn" class="inputBox">
+            <input name="streetNumber" placeholder="Gatu nummer" class="inputBox">
+            <button id="sbmt">Lägg till hyresgästen</button>
         </form>
 
         <div id="allNames">
@@ -51,6 +51,11 @@
             background: #c00;
             color: white;
         }
+        input, #sbmt{
+            padding: 10px;
+            margin: 10px;
+            font-size: 20px;
+        }
     </style>
 
     <script>
@@ -75,5 +80,10 @@
             if(confirm('Säkert du vill ta bort ' + evt.target.name + ' ?') == true)
             window.location.href = '/deleteClient/' + evt.target.idAddress;
         });
+        
+        document.getElementById('sbmt').onclick = function(){
+            sbmt.style.display = 'none';
+        }
+
     </script>
 </html>
