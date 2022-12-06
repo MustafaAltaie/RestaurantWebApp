@@ -1,1085 +1,237 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Home</title>
-        <script src="/socket.io/socket.io.js"></script>
-    </head>
+    <title>HyresAvi</title>
     <body>
-        <div id="bodySection">
-            <div id="header">
-                <div id="slideShowContainer"></div>
-                <div id="logoWrapper">
-                    <img src="images/logo.png">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam magni fuga voluptatibus sunt cumque eum odio! Quasi nam accusantium adipisci hic, possimus perspiciatis, harum nostrum deserunt aliquam nemo obcaecati quia.</p>
-                </div>
-                <input type="hidden" id="allSliderImages" value="{{sliderImages}}">
-            </div>
-
-            <div id="menu">
-                <div id="menuWrapperMain">
-                    <div id="menuWrapper"></div>
-                </div>
-            </div>
-
-            {{#each optionList}}
-            <input type="hidden" value="{{this.name}}" class="optionNameDB">
-            {{/each}}
-
-            {{#each NewItemData}}
-            <input type="hidden" value="{{this._id}}" class="item_idDB">
-            <input type="hidden" value="{{this.catigory}}" class="itemCatigoryDB">
-            <input type="hidden" value="{{this.prise}}" class="itemPriseDB">
-            <input type="hidden" value="{{this.title}}" class="itemTitleDB">
-            <input type="hidden" value="{{this.text}}" class="itemTextDB">
-            <input type="hidden" value="{{this.uniqueNumber}}" class="itemUniqueNumberDB">
-            {{/each}}
-
-            <p id="addToCart">Add to cart 🛒</p>
-
-            <div id="cart">
-                <img src="/images/cart.png">
-            </div>
-
-            <div id="redCircle">1</div>
-
-
-            <div id="mainSection">
-                <div id="foodSection"></div>
-                <div id="cartContainer">
-                    <div id="cartContainerSmall">
-                        <div id="itemInCartContainer">
-                            <p id="emptyCartText" style="display: none">Your cart is empty</p>
-                        </div>
-
-                        <div id="toPurchase">
-                            <p id="totalPrise">Total prise: 50$</p>
-                            <button id="buyNowBtn">Complete purchase</button>
-                        </div>
-
-                        <div id="openingTimeList">
-                            <h3 style="margin-bottom: 20px; font-weight: normal">Opening times</h3>
-                            <p>Monday: 10:00 - 20:00</p>
-                            <p>Tuseday: 10:00 - 20:00</p>
-                            <p>Widnesday: 9:00 - 20:00</p>
-                            <p>Thursday: 10:00 - 20:00</p>
-                            <p>Frighday: 10:00 - 21:00</p>
-                            <p>Saturday: 10:00 - 21:00</p>
-                            <p>Sunday: 10:00 - 20:00</p>
-                            <p style="margin-top: 20px">Address: kerstinbodagatan 16</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <textarea id="selectedItemDetails" style="display: none"></textarea>
-
-            {{#each NewCurrencyData}}
-            <input type="hidden" value="{{this._id}}" id="currencyIdDB">
-            <input type="hidden" value="{{this.currency}}" id="currencyDB">
-            {{/each}}
-
-            <p id="copyright">Copyright © 2022 Mustafa Altaie. All Rights Reserved</p>
+        {{#each clientList}}
+        <input type="hidden" value="{{this._id}}" class="name_IdDB">
+        <input type="hidden" value="{{this.name}}" class="nameDB">
+        <input type="hidden" value="{{this.homeNumber}}" class="homeNumberDB">
+        <input type="hidden" value="{{this.cityName}}" class="cityNameDB">
+        <input type="hidden" value="{{this.cityNumber}}" class="cityNumberDB">
+        <input type="hidden" value="{{this.rent}}" class="rentDB">
+        <input type="hidden" value="{{this.streetName}}" class="streetNameDB">
+        <input type="hidden" value="{{this.streetNumber}}" class="streetNumberDB">
+        {{/each}}
+        <div id="allNames">
+            <a href="/addRemove">Lägg till eller ta bort hyresgäst</a>
         </div>
+        <div class="cntrct">
+            <div id="mainDiv1">
+                <div id="div1">
+                    <input value="HYRESAVI" style="width: 100%; text-align: center; font-size: 20px;">
+                </div>
+                <div id="div2">
+                    <input value="SANDRA TRAN">
+                    <input value="Tel: 0707541153">
+                </div>
+                <div id="div3">
+                    <input value="Kundens namn">
+                    <input value="Mustafa Altaie" id="nameText" autocomplete="off" spellcheck="false">
+                    <input value="GatuNamn GatuNummer" id="streetNameAndNumberText">
+                    <input value="OrtNummer OrtNamn" id="cityNameAndNumberText">
+                </div>
+                <div id="div4">
+                    <input value="Faktura nr: 12345678" id="invoiceNumberText">
+                    <input value="Fakturadatum:" id="invoiceDateText">
+                    <input value="Förfallodatum:" id="invoiceDueDateText"><br>
+                    <input value="Bankgiro nr: 5758 - 4054">
+                </div>
+            </div>
 
-
-        <div id="paymentSection">
-            <form action="sendOrder" method="post" id="paymentSectionForm">
-                <u id="backToItems">Back to items</u>
-                <div id="orderInfo">
-                    <input name="clientName" id="clientName" placeholder="First and last name*">
-                    <input type="number" name="clientNumber" id="clientNumber" placeholder="Mobile number*">
-                    <input type="number" name="tableNumber" id="tableNumber" placeholder="Table number*">
+            <div id="mainDiv2">
+                <div id="leftTable">
+                    <input value="Beskrivning" style="background: #aaa; border-top: solid 2px #000; text-align: center;">
+                    <input value="Lägenhet Nummer" id="homeNumberText">
+                    <input value="Monaden Hyra" id="monthRentText">
+                    <input>
+                    <input>
+                    <input>
+                    <input value="OBS! Om vi skulle behöva skicka en betalningspåminnelse så kostar denna 100 kr" style="font-size: 13px;">
+                    <input>
+                    <input value="Totalt" style="border-bottom: solid 2px #000">
                 </div>
-                <div id="orderPaymentMethods">
-                    <u id="paymentSwishOption" onclick="scrollPaymentSlide(0, 'Pay with Swish', 'paymentSwishOption')">Swish</u>
-                    <u id="paymentCardOption" onclick="scrollPaymentSlide(1, 'Pay with card', 'paymentCardOption')">Master or debit card 💳</u>
-                    <u id="paymentCashOption" onclick="scrollPaymentSlide(2, 'Pay cash', 'paymentCashOption')">Pay cash or other methods</u>
+                <div id="rightTable">
+                    <input value="Summa" style="background: #aaa; border-top: solid 2px #000; text-align: center;">
+                    <input class="prise">
+                    <input value="5555 kr" id="rentText" class="prise">
+                    <input class="prise">
+                    <input class="prise">
+                    <input class="prise">
+                    <input class="prise">
+                    <input class="prise">
+                    <input value="5555 kr" id="totalPriseText" style="border-bottom: solid 2px #000">
                 </div>
-                <div id="paymentMethodsSliderMain">
-                    <div id="paymentMethodsSliderSmall">
-                        <div id="swishWrapper">
-                            <img src="/images/swish.png">
-                            <div>
-                                <h1>Payment via Swish</h1>
-                                <p style="margin: 10px 0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae rem reiciendis voluptas quo mollitia expedita, praesentium eum? Fuga illum incidunt id, a corporis maxime.</p>
-                                <input type="number" name="swishNumber" id="swishNumber" placeholder="Number for Swish">
-                            </div>
-                        </div>
-                        <div id="debitCardWrapper">
-                            <div>
-                                <h1>Payment via card</h1>
-                                <img src="/images/debitCart.png">
-                            </div>
-                            <div id="debitCardDetails">
-                                <input name="cardName" id="cardName" placeholder="Full name">
-                                <input type="number" name="cardNumber" id="cardNumber" placeholder="Card number">
-                                <div>
-                                    <input type="number" name="MMCard" placeholder="MM" min="1" max="12">
-                                    <p style="font-size: 20px">/</p>
-                                    <input type="number" name="YYCard" placeholder="YY" min="22" max="99">
-                                    <input type="number" name="cardCode" placeholder="CVC" style="width: 100px; margin-left: 30px" min="999" max="100">
-                                </div>
-                            </div>
-                        </div>
-                        <div id="cashWrapper">
-                            <h1>Payment cash or other method</h1>
-                            <p style="margin: 10px 0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias cum suscipit laudantium similique. Alias sit dignissimos libero, expedita repudiandae quam dolor exercitationem quis similique corporis magni suscipit enim sunt commodi.</p>
-                        </div>
-                    </div>
-                    <input type="checkbox" id="termsConditions">
-                    <label for="termsConditions">Agree to the <a href="/termsAndConditions" target="_blank">terms and conditions</a></label>
-                    <br><br>
-                    <input type="hidden" name="paymentMethod" id="paymentMethodToBackend">
-                    <input type="hidden" name="dateAndTime" id="dateAndTime">
-                    <input type="hidden" name="totalPrice" id="totalPriceToBack">
-                    <textarea name="itemOrder" id="cartItemsToBack" style="display: none"></textarea>
-                    <p id="sendOrder"></p>
-                    <button id="sendOrderBtn" style="display: none"></button>
-                </div>
-            </form>
+            </div>
+            <input id="note" value="Betalning skall vara oss tillhanda senast på förfallodagen. Vid betalning efter förfallodagen debiteras">
+            <input id="note2" value="påminnelseavgift samt dröjsmålsränta, för närvarande 9,5% ränta beräknad enligt 6 ränteldagen.">
         </div>
     </body>
     <style>
-        @media only screen and (max-width: 1024px){
-            body #bodySection{
-                position: relative;
-            }
-            body #mainSection, body #orderPaymentMethods{
-                flex-direction: column;
-            }
-            body #foodSection, body #cartContainer{
-                width: 100%;
-            }
-            body #logoWrapper{
-                width: 90%;
-            }
-            body h3, body p, body .item p, body #addToCart, body #cartContainer p, body #redCircle, body .itemInCart p, body .itemInCart > div > button, body #orderInfo input, body #backToItems, body #orderPaymentMethods u, body label, body a, body #paymentMethodsSliderSmall h1, body .item h3, body #toPurchase > button, body #sendOrder, body #menuWrapper p{
-                font-size: 40px;
-            }
-            body #openingTimeList p, body #paymentMethodsSliderSmall p{
-                font-size: 30px;
-            }
-            body .item{
-                margin: 50px 0;
-            }
-            body .item p{
-                font-weight: normal;
-            }
-            body .itemInCart{
-                padding: 30px 50px;
-            }
-            body .itemInCart > div > button{
-                height: 50px;
-                width: 50px;
-            }
-            body .itemInCartTitle{
-                width: 400px;
-            }
-            body .priseTitleTextWrapper{
-                gap: 10px;
-            }
-            body #cart{
-                width: 90px;
-                height: 70px;
-                right: 40px;
-            }
-            body #redCircle{
-                width: 80px;
-                height: 80px;
-            }
-            body #slideShowContainer{
-                height: 700px;
-            }
-            body #paymentSection, body #menuWrapperMain::-webkit-scrollbar{
-                display: none;
-            }
-            body #paymentSectionForm{
-                padding: 100px;
-            }
-            body #orderInfo input{
-                width: 100%
-            }
-            body #orderPaymentMethods u, body #sendOrder{
-                padding: 20px 0;
-            }
-            body #termsConditions{
-                width: 30px;
-                height: 30px;
-            }
-            body label, body a{
-                padding: 0 0 0 10px;
-            }
-        }
-
         *{
             margin: 0;
             padding: 0;
-            font-family: 'Barlow Semi Condensed', sans-serif;
-            user-select: none;
-            font-size: 18px;
             outline: none;
-        }
-        #bodySection{
-            z-index: 10;
-            position: absolute;
-            background: #fff;
-            transition: 0.3s;
-        }
-        p{
-            font-size: 20px;
-        }
-        h3{
-            font-size: 30px;
-        }
-        u{
-            text-decoration: none;
-            font-size: 20px;
-            background: #12465e;
-            color: #fff;
-            padding: 5px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        a{
-            color: blue;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        #header{
-            position: relative;
+            font-size: 16px;
+            font-family: 'Times New Roman', Times, serif;
             font-weight: bold;
         }
-        #slideShowContainer{
-            height: 400px;
-            background: #111;
+        body{
+            background: #aaa;
         }
-        #slideShowContainer > img{
+        #allNames{
+            z-index: 100;
             position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 3s;
-        }
-
-        #logoWrapper{
-            position: absolute;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 20px;
-            width: 500px;
             top: 50%;
-            transform: translateY(-50%);
-            color: #fff;
-        }
-        #logoWrapper > img{
-            width: 120px;
-        }
-
-        #menu{
-            border-top: solid 1px #000;
-            border-bottom: solid 1px #000;
-            background: #12465e;
-        }
-        #menuWrapperMain{
-            width: 100%;
-            overflow-x: scroll;
-            overflow-Y: hidden;
-        }
-        #menuWrapperMain::-webkit-scrollbar{
-            height: 10px;
-        }
-        #menuWrapperMain::-webkit-scrollbar-thumb{
-            border-radius: 10px;
-            background: #fd0;;
-        }
-        #menuWrapper{
-            display: flex;
-            padding: 20px;
-        }
-        #menuWrapper > p{
-            white-space: nowrap;
-            padding: 20px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            color: #fff;
-        }
-        #menuWrapper > p:hover{
-            padding: 17px 30px 23px 30px;
-        }
-
-
-
-        #mainSection{
-            display: flex;
-            padding: 50px;
-        }
-
-        #foodSection{
-            width: 60%;
-            padding-right: 50px;
-            font-weight: bold;
-        }
-        .containers{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 50px 0;
-        }
-        .item{
-            height: 200px;
-            width: 100%;
-            cursor: pointer;
-            margin: 30px 0;
-            display: flex;
-        }
-        .item p{
-            max-height: 150px;
-            overflow-y: scroll;
-        }
-        .item p::-webkit-scrollbar{
-            display: none;
-        }
-        .item > img{
-            height: 100%;
-            width: 35%;
-            object-fit: cover;
-            pointer-events: none;
-        }
-        .priseTitleTextWrapper{
-            width: 65%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 30px;
-            padding: 0 50px;
-            pointer-events: none;
-        }
-        .priseTitleWrapper{
-            display: flex;
-            justify-content: space-between;
-        }
-        .item > p{
-            pointer-events: none;
-        }
-        .item > h3{
-            pointer-events: none;
-        }
-
-        #addToCart{
-            position: absolute;
-            font-size: 22px;
-            background: #12465e;
-            border-radius: 5px;
-            color: #fff;
-            padding: 15px 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 500px;
+            min-width: 100px;
+            background: #111;
             text-align: center;
-            cursor: pointer;
+            padding: 50px 10px 10px 10px;
             display: none;
         }
-
-        #cart{
-            z-index: 200;
-            position: fixed;
+        #allNames > button{
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #allNames > a{
+            position: absolute;
             right: 0;
             top: 0;
-            width: 50px;
-            height: 40px;
             padding: 10px;
-            cursor: pointer;
-        }
-        #cart > img{
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            color: #0a0;
+            text-decoration: none;
         }
 
-        #redCircle{
-            z-index: 200;
-            position: fixed;
-            width: 50px;
-            height: 50px;
-            background: #d10;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-            display: none;
-            transition: 0.3s;
-        }
-
-
-        #cartContainer{
+        .cntrct{
             position: relative;
-            width: 40%;
-            color: #fff;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
         }
-        #cartContainerSmall{
-            position: sticky;
-            top: 50px;
-            background: #12465e;
-            border-radius: 5px;
-        }
-
-        #itemInCartContainer{
-            padding: 20px;
-        }
-        #toPurchase{
-            padding: 0 20px 20px 20px;
-        }
-        #toPurchase > button{
-            padding: 20px 0;
-            width: 100%;
-            margin-top: 10px;
-            font-size: 25px;
-            font-weight: bold;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-        #openingTimeList{
-            border-top: solid 1px #999;
-            padding: 20px;
-        }
-
-        .itemInCart{
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 50px;
-            border: solid 1px #999;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        .itemInCart p{
-            font-size: 22px;
-        }
-        .itemInCart > div{
-            display: flex;
-            gap: 15px;
-        }
-        .itemInCart > div > button{
-            border-radius: 50%;
-            height: 30px;
-            width: 30px;
-            font-size: 22px;
-            font-family: Arial, Helvetica, sans-serif;
-            border: none;
-            cursor: pointer;
-        }
-        .itemInCartTitle{
-            width: 200px;
-            white-space: nowrap;
-            overflow-x: scroll;
-        }
-        .itemInCartTitle::-webkit-scrollbar{
-            display: none;
-        }
-        .itemInCartPrs{
-            width: 30px;
-        }
-
-
-        #paymentSection{
-            display: flex;
-            justify-content: center;
-            padding: 5px 0;
-        }
-        #paymentSectionForm{
-            position: relative;
-            padding: 0 100px;
-            border: solid 1px #111;
-            border-radius: 10px;
-        }
-
-        #backToItems{
+        #mainDiv1{
             position: absolute;
-            left: -1px;
-            top: 10px;
-            border-radius: 0 5px 5px 0;
+            top: 40px;
+            width: 210mm;
         }
-        #backToItems:hover{
-            background: #166881;
+        #mainDiv1 > div{
+            display: flex;
+            flex-direction: column;
         }
-        
-        #paymentSectionForm input{
-            border-radius: 5px;
-            border: solid 1px #111;
-            text-align: center;
+        #mainDiv1 input{
             padding: 5px 0;
-        }
-        #paymentSectionForm img{
-            height: 100px;
-        }
-        #paymentSectionForm h1{
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
-        #sendOrder{
-            width: 100%;
-            padding: 5px 0;
-            font-size: 25px;
-            text-align: center;
-            background: #555;
-            color: #fff;
-            border-radius: 5px;
             border: none;
-            cursor: pointer;
-            pointer-events: none;
         }
-        #sendOrder:hover{
-            padding: 2px 0 8px 0;
+        #div2{
+            position: absolute;
+            left: 40px;
+            top: 50px;
         }
-        #orderInfo{
+        #div3{
+            position: absolute;
+            right: 40px;
+            top: 50px;
+        }
+        #div4{
+            position: absolute;
+            right: 40px;
+            top: 220px;
+        }
+
+        #mainDiv2{
+            position: absolute;
+            top: 450px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            display: flex;
+        }
+        #leftTable{
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            align-items: center;
+            width: 75%;
         }
-        #orderInfo > input{
-            width: 50%;
-        }
-        #paymentSectionForm > div{
-            margin: 30px 0;
-        }
-        #paymentMethodsSliderMain{
-            width: 600px;
-            overflow-x: scroll;
-            pointer-events: none;
-        }
-        #paymentMethodsSliderMain::-webkit-scrollbar{
-            display: none;
-        }
-        #paymentMethodsSliderSmall{
-            width: 1800px;
-            display: flex;
-            margin-bottom: 10px;
-            padding-bottom: 20px;
-            transition: 0.2s;
-            border-bottom: solid 1px #111;
-        }
-        #paymentMethodsSliderSmall > div{
-            width: 600px;
-            height: 100%;
-            display: flex;
-        }
-        #paymentMethodsSliderSmall > div input{
-            pointer-events: all;
-        }
-
-        #orderPaymentMethods{
-            display: flex;
-            gap: 10px;
-            padding-top: 30px;
-            border-top: solid 1px #111;
-            text-align: center;
-        }
-
-        #swishWrapper{
-            gap: 50px;
-        }
-        #swishWrapper > div{
-            width: 80%;
-        }
-
-        #debitCardWrapper{
-            gap: 50px;
-        }
-        #debitCardDetails{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 60%;
-        }
-        #debitCardDetails input{
+        #leftTable > input{
+            border: solid 1px #000;
+            border-left: 2px solid #000;
+            padding-left: 3%;
+            height: 45px;
             width: 100%;
-            margin: 3px;
-            margin-bottom: 10px;
         }
-        #debitCardDetails > div{
-            display: flex;
-            height: 40px;
+        #rightTable > input{
+            border: solid 1px #000;
+            border-right: 2px solid #000;
+            padding-left: 4%;
+            height: 45px;
+            width: 90%;
         }
-        #debitCardDetails > div > input{
-            width: 50px;
-        }
-
-        #cashWrapper{
-            flex-direction: column;
+        #rightTable{
+            width: 25%;
         }
 
-        #copyright{
-            padding: 30px 0;
-            text-align: center;
-            background: #111;
-            color: #fff;
-            font-size: 20px;
+        #note, #note2{
+            position: absolute;
+            left: 20px;
+            top: 250mm;
+            width: 90%;
+            border: none;
+            font-size: 13px;
         }
-
-        #termsConditions, label{
-            pointer-events: all;
+        #note2{
+            top: 255mm;
         }
     </style>
-
     <script>
-
-        var socket = io.connect('http://mustafaaltaierestaurant.herokuapp.com/');
-
-        if(document.querySelectorAll('#currencyDB').length != 0)
-        var currency = currencyDB.value;
-        else
-        var currency = '$';
-
-        //-------------- Create slider images from the images folder ---------------//
-
-        for(i = 0; i < allSliderImages.value.split(',').length; i++){
-            var image = document.createElement('img');
-            image.className = 'slideImage';
-            image.id = 'slide' + parseInt(i + 1);
-            image.src = '/Slider Images/' + image.id + '.jpg';
-            slideShowContainer.appendChild(image);
+        if(document.getElementsByClassName('name_IdDB').length != 0)
+        for(i = 0; i < document.getElementsByClassName('name_IdDB').length; i++){
+            var button1 = document.createElement('button');
+            button1.innerHTML = document.getElementsByClassName('nameDB')[i].value;
+            button1.name = document.getElementsByClassName('nameDB')[i].value;
+            button1.homeNumber = document.getElementsByClassName('homeNumberDB')[i].value;
+            button1.cityName = document.getElementsByClassName('cityNameDB')[i].value;
+            button1.cityNumber = document.getElementsByClassName('cityNumberDB')[i].value;
+            button1.rent = document.getElementsByClassName('rentDB')[i].value;
+            button1.streetName = document.getElementsByClassName('streetNameDB')[i].value;
+            button1.streetNumber = document.getElementsByClassName('streetNumberDB')[i].value;
+            allNames.appendChild(button1);
         }
-
-
-        //-------------- Create slideshow ---------------//
-
-        var ii = 1;
-
-        function showSlider(){
-            for(i = 0; i < document.getElementsByClassName('slideImage').length; i++)
-            document.getElementsByClassName('slideImage')[i].style.opacity = 0;
-            document.getElementById('slide' + ii).style.opacity = 1;
-        }
-        showSlider();
-
-        if(document.getElementsByClassName('slideImage').length > 1)
-        setInterval(function(){
-            ii++;
-            if(ii > document.getElementsByClassName('slideImage').length)
-            ii = 1;
-            showSlider();
-        }, 3000);
-
-
-        //-------------- Choose which items to view ---------------//
-
-        menuWrapper.addEventListener('click', function(evt){
-            if(evt.target.tagName == 'P'){
-                for(i = 0; i < document.getElementsByClassName('containers').length; i++){
-                    document.getElementsByClassName('containers')[i].style.display = 'none';
-                }
-                document.getElementById(evt.target.innerHTML.replace(/ /g, '') + 'Container').style.display = 'flex';
-
-                for(i = 0; i < document.getElementsByClassName('foodOptions').length; i++){
-                    document.getElementsByClassName('foodOptions')[i].style.background = '#12465e';
-                }
-                document.getElementById(evt.target.innerHTML + 'Option').style.background = '#22627a';
-            }
-        });
-
-
-        //-------------- Create food containers according to type of food ---------------//
-
-        for(i = 0; i < document.getElementsByClassName('item_idDB').length; i++){
-            document.getElementsByClassName('itemCatigoryDB')[i].value = document.getElementsByClassName('itemCatigoryDB')[i].value.replace(/ /g, '');
-            if(document.querySelectorAll('#' + document.getElementsByClassName('itemCatigoryDB')[i].value + 'Container').length == 0){
-                var itemContainer = document.createElement('div');
-                itemContainer.id = document.getElementsByClassName('itemCatigoryDB')[i].value + 'Container';
-                itemContainer.className = 'containers';
-                foodSection.appendChild(itemContainer);
-            }
-        }
-
-
-        //-------------- Create items ---------------//
-
-        for(i = 0; i < document.getElementsByClassName('item_idDB').length; i++){
-            var item = document.createElement('div');
-            item.className = 'item';
-            item.idAddress = document.getElementsByClassName('item_idDB')[i].value;
-
-            var image = document.createElement('img');
-            image.src = 'Item Images/' + document.getElementsByClassName('itemUniqueNumberDB')[i].value + '.jpg';
-
-            var ptt = document.createElement('div');
-            ptt.className = 'priseTitleTextWrapper';
-
-            var prise = document.createElement('h3');
-            prise.innerHTML = document.getElementsByClassName('itemPriseDB')[i].value + currency;
-            item.prise = document.getElementsByClassName('itemPriseDB')[i].value;
-
-            var title = document.createElement('h3');
-            title.innerHTML = document.getElementsByClassName('itemTitleDB')[i].value;
-            item.title = title.innerHTML;
-
-            var text = document.createElement('p');
-            text.innerHTML = document.getElementsByClassName('itemTextDB')[i].value;
-
-            var pt = document.createElement('div');
-            pt.className = 'priseTitleWrapper';
-
-            item.amount = 1;
-
-            pt.appendChild(title);
-            pt.appendChild(prise);
-            ptt.appendChild(pt);
-            ptt.appendChild(text);
-
-            item.appendChild(image);
-            item.appendChild(ptt);
-
-            document.getElementById(document.getElementsByClassName('itemCatigoryDB')[i].value + 'Container').appendChild(item);
-        }
-
-
-        //-------------- Create option menu in the header ---------------//
-
-        for(i = 0; i < document.getElementsByClassName('optionNameDB').length; i++){
-            var option = document.createElement('p');
-            option.id = document.getElementsByClassName('optionNameDB')[i].value + 'Option';
-            option.className = 'foodOptions';
-            option.innerHTML = document.getElementsByClassName('optionNameDB')[i].value;
-            var nam = document.getElementsByClassName('optionNameDB')[i].value;
-            var name = nam.replace(/ /g, '');
-            if(document.querySelectorAll("#" + name + 'Container').length != 0)
-            menuWrapper.appendChild(option);
-        }
-
-        document.getElementsByClassName('foodOptions')[0].click();
-
-
-        //-------------- Show buy item button ---------------//
 
         document.addEventListener('click', function(evt){
-            
+            if(evt.target.name != undefined && evt.target.name != ''){
+                nameText.value = evt.target.name;
+                streetNameAndNumberText.value = evt.target.streetName + ' ' + evt.target.streetNumber;
+                cityNameAndNumberText.value = evt.target.cityNumber + ' ' + evt.target.cityName;
+                invoiceNumberText.value = 'Faktura nr: ' + evt.target.streetNumber + evt.target.homeNumber + parseInt(new Date().getMonth() + 1);
+                var todayNumber = new Date().getDate();
+                if(todayNumber.toString().length == 1)
+                invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + parseInt(new Date().getMonth() + 1) + ' ' + '0' + new Date().getDate();
+                invoiceDueDateText.value = 'Förfallodatum: ' + new Date().getFullYear() + ' ' + parseInt(new Date().getMonth() + 1) + ' 30';
+                homeNumberText.value = 'Lägenhet ' + evt.target.homeNumber;
+                var monthNames = ["Januari", "Februari", "Mars", "April", "Maj", "Juni",
+                "Juli", "Augusti", "September", "Oktober", "November", "December"
+                ];
+                monthRentText.value = monthNames[new Date().getMonth()] + ' Hyra';
+                rentText.value = evt.target.rent + ' kr';
+                totalPriseText.value = evt.target.rent + ' kr';
+            }
+
+            if(evt.target.id == 'nameText')
+            allNames.style.display = 'block';
+            else
+            allNames.style.display = 'none';
         });
 
-
-        //-------------- Get clicked item details ---------------//
-
-        var currentItem = '';
-
-        document.addEventListener('click', function(evt){
-            if(evt.target.className == 'item'){
-                if(document.getElementsByClassName('itemInCart').length > 0)
-                for(i = 0; i < document.getElementsByClassName('itemInCart').length; i++){
-                    if(evt.target.title == document.getElementsByClassName('itemInCart')[i].title){
-                        alert("Item's already been added to cart!");
-                        addToCart.style.display = "none";
-                        break;
-                    }
-                    else
-                    showAddToCartButton(evt.target);
-                }
-                else
-                showAddToCartButton(evt.target);
-            }
-            else
-            addToCart.style.display = "none";
-        });
-
-        function showAddToCartButton(n){
-            currentItem = n.title + ',' + n.prise + ',' + n.amount + '.';
-            addToCart.style.width = n.offsetWidth + 'px';
-            addToCart.style.display = "block";
-            addToCart.style.left = n.offsetLeft + 'px';
-            addToCart.style.top = n.offsetTop + n.offsetHeight - addToCart.offsetHeight/2 + 'px';
-        }
-
-        function ifCartIsEmpty(){
-            if(document.getElementsByClassName('itemInCart').length == 0)
-            totalPrise.innerHTML = 'Empty Cart 🛒';
-        }
-
-        //-------------- Add atem to cart and place the red circle ---------------//
-
-        if(localStorage.MustafaAltaieRestaurant == '')
-        var circleMovePerm = 1;
-
-        document.getElementById('addToCart').onclick = function(evt){
-            if(circleMovePerm == 1 && selectedItemDetails.value == ''){
-                redCircle.style.display = 'flex';
-                redCircle.style.top = event.clientY - redCircle.offsetHeight/2 + 'px';
-                redCircle.style.left = event.clientX - redCircle.offsetWidth/2 + 'px';
-                setTimeout(function(){
-                    placeTheRedCircle();
-                }, 300);
-                circleMovePerm = 0;
-            }
-            selectedItemDetails.value += currentItem;
-            localStorage.MustafaAltaieRestaurant = selectedItemDetails.value;
-            addToCart.style.display = 'none';
-            createCart(document.getElementsByClassName('itemInCart').length, currentItem.substr(0, currentItem.length-1));
-            getCartData();
-        }
-
-        function placeTheRedCircle(){
-            if(window.matchMedia('(min-width: 1024px)').matches){
-                redCircle.style.left = cart.offsetLeft + redCircle.offsetWidth/2 - 2 + 'px';
-                redCircle.style.width = '30px';
-                redCircle.style.height = '30px';
-            }
-            else{
-                redCircle.style.width = '45px';
-                redCircle.style.height = '45px';
-                redCircle.style.left = '89%';
-            }
-            redCircle.style.top = 0;
-            purchaseButtonStyle();
-        }
-
-        if(localStorage.MustafaAltaieRestaurant != ''){
-            selectedItemDetails.value = localStorage.MustafaAltaieRestaurant;
-            redCircle.style.display = 'flex';
-            placeTheRedCircle();
-            redCircle.innerHTML = selectedItemDetails.value.split('.').length-1;
-        }
-        else
-        selectedItemDetails.value = '';
-
-
-        //-------------- Create cart items ---------------//
-
-        for(i = 0; i < selectedItemDetails.value.split('.').length-1; i++){
-            createCart(i, selectedItemDetails.value.split('.')[i]);
-        }
-
-        function createCart(i, itm){
-            var item = document.createElement('div');
-            item.id = 'itemCart' + parseInt(i + 1);
-            item.className = 'itemInCart';
-
-            var title = document.createElement('p');
-            title.className = 'itemInCartTitle';
-            title.innerHTML = itm.split(',')[0];
-
-            var btnTitleBtn = document.createElement('div');
-
-            var btn1 = document.createElement('button');
-            btn1.id = item.id + 'Dec';
-            btn1.className = 'incDecCartItem';
-            if(itm.split(',')[2] < 2){
-                btn1.innerHTML = 'x';
-                btn1.style.color = '#fff';
-                btn1.style.background = '#c21';
-            }
-            else{
-                btn1.innerHTML = '-';
-                btn1.style.color = '#000';
-                btn1.style.background = '#fff';
-            }
-
-            var nm = document.createElement('p');
-            nm.id = item.id + 'Nmb';
-            nm.className = 'itemInCartAmount';
-            nm.innerHTML = itm.split(',')[2];
-
-            var btn2 = document.createElement('button');
-            btn2.id = item.id + 'Inc';
-            btn2.className = 'incDecCartItem';
-            btn2.innerHTML = '+';
-
-            btnTitleBtn.appendChild(btn1);
-            btnTitleBtn.appendChild(nm);
-            btnTitleBtn.appendChild(btn2);
-
-            var prise = document.createElement('p');
-            prise.innerHTML = itm.split(',')[1] * itm.split(',')[2] + currency;
-            prise.id = item.id + 'Prs';
-            prise.className = 'itemInCartPrs';
-
-            item.title = title.innerHTML;
-            item.prise = itm.split(',')[1];
-
-            item.appendChild(title);
-            item.appendChild(btnTitleBtn);
-            item.appendChild(prise);
-
-            itemInCartContainer.appendChild(item);
-        }
-
-
-        //-------------- View cart section ---------------//
-
-        document.getElementById('cart').onclick = function(){
-            window.scroll({
-                top: cartContainer.offsetTop,
-                behavior: 'smooth'
-            });
-        }
-
-
-        //-------------- Change number of items in cart or remove ---------------//
-
-        itemInCartContainer.addEventListener('click', function(evt){
-            if(evt.target.className == 'incDecCartItem'){
-                var last3Letters = evt.target.id.substr(evt.target.id.length-3, evt.target.id.length);
-                var itemNmOnly = evt.target.id.slice(8, evt.target.id.length-3);
-                if(last3Letters == 'Inc'){
-                    decrementBtn('itemCart' + itemNmOnly + 'Dec', '#fff', '#000', '-');
-                    document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML = parseInt(document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML) + 1;
-                    document.getElementById('itemCart' + itemNmOnly + 'Prs').innerHTML = document.getElementById('itemCart' + itemNmOnly).prise * document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML + currency;
-                }
-                if(last3Letters == 'Dec'){
-                    document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML = parseInt(document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML) - 1;
-                    document.getElementById('itemCart' + itemNmOnly + 'Prs').innerHTML = document.getElementById('itemCart' + itemNmOnly).prise * document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML + currency;
-                    if(document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML < 2)
-                        decrementBtn('itemCart' + itemNmOnly + 'Dec', '#c21', '#fff', 'x');
-                    if(document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML < 1){
-                        if(confirm("Do you want to remove the item?") == true)
-                            document.getElementById('itemCart' + itemNmOnly).remove();
-                        else{
-                            document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML = parseInt(document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML) + 1;
-                            document.getElementById('itemCart' + itemNmOnly + 'Prs').innerHTML = document.getElementById('itemCart' + itemNmOnly).prise * document.getElementById('itemCart' + itemNmOnly + 'Nmb').innerHTML + currency;
-                        }
-                    }
-                }
-                getCartData();
-                purchaseButtonStyle();
-                ifCartIsEmpty();
+        document.addEventListener('input', function(evt){
+            if(evt.target.className == 'prise'){
+                var totalOtherPrices = 0;
+                for(i = 0; i < 7; i++)
+                if(document.getElementsByClassName('prise')[i].value != '')
+                totalOtherPrices += parseInt(document.getElementsByClassName('prise')[i].value.replace(/\D/g, ''));
+                totalPriseText.value = totalOtherPrices + ' kr';
             }
         });
-        // If only one item change dec button to del figure //
-        function decrementBtn(n, bac, color, text){
-            document.getElementById(n).innerHTML = text;
-            document.getElementById(n).style.background = bac;
-            document.getElementById(n).style.color = color;
-        }
-
-
-        //-------------- Fetch all cart details and place them in local storage ---------------//
-
-        function getCartData(){
-            var totalPrs = 0;
-            selectedItemDetails.value = '';
-            for(i = 0; i < document.getElementsByClassName('itemInCart').length; i++){
-                var item = document.getElementsByClassName('itemInCart')[i];
-                var thisItemPrise = document.getElementsByClassName('itemInCartPrs')[i].innerHTML;
-                var thisPrise = thisItemPrise.substr(0, thisItemPrise.length-1);
-                var amount = document.getElementsByClassName('itemInCartAmount')[i].innerHTML;
-                var oneItem = item.title + ',' + item.prise + ',' + amount + '.';
-                selectedItemDetails.value += oneItem;
-                totalPrs = parseInt(totalPrs) + parseInt(thisPrise);
-            }
-            localStorage.MustafaAltaieRestaurant = selectedItemDetails.value;
-            totalPrise.innerHTML = 'Total prise: ' + totalPrs + '$';
-            redCircle.innerHTML = selectedItemDetails.value.split('.').length-1;
-            if(redCircle.innerHTML == 0){
-                redCircle.style.display = 'none';
-                redCircle.style.top = 'unset';
-                redCircle.style.left = 'unset';
-                redCircle.style.width = '50px';
-                redCircle.style.height = '50px';
-                circleMovePerm = 1;
-            }
-            else
-            redCircle.style.display = 'flex';
-        }
-        getCartData();
-        ifCartIsEmpty();
-
-
-        //-------------- Submit purchase ---------------//
-
-        //Complete purchase button style if the cart is ot not empty//
-        function purchaseButtonStyle(){
-           if(document.getElementsByClassName('itemInCart').length > 0){
-                buyNowBtn.style.background = '#ddd';
-                buyNowBtn.style.pointerEvents = 'unset';
-            }
-            else{
-                buyNowBtn.style.background = '#777';
-                buyNowBtn.style.pointerEvents = 'none';
-            }
-        }
-        purchaseButtonStyle();
-
-        //Pressing complete purchase button//
-        document.getElementById('buyNowBtn').onclick = function(){
-            setTimeout(function(){
-                scrollPaymentSlide(2, 'Pay cash', 'paymentCashOption');
-            }, 100);
-            if(window.matchMedia('(min-width: 1024px)').matches){
-               bodySection.style.transform = 'translateX(-100%)';
-                setTimeout(function(){
-                    bodySection.style.display = 'none';
-                }, 150); 
-            }
-            else{
-                paymentSection.style.display = 'flex';
-                bodySection.style.display = 'none';
-            }
-        }
-
-        //Pressing Back to items button//
-        document.getElementById('backToItems').onclick = function(){
-            if(window.matchMedia('(min-width: 1024px)').matches){
-                bodySection.style.display = 'block';
-                setTimeout(function(){
-                    bodySection.style.transform = 'translateX(0%)';
-                }, 150);
-            }
-            else{
-                bodySection.style.display = 'block';
-                paymentSection.style.display = 'none';
-            }
-        }
-
-        //Payment method slide swiching//
-        function scrollPaymentSlide(n, method, btn){
-            paymentMethodsSliderSmall.style.transform = 'translateX(' + -n*paymentMethodsSliderMain.offsetWidth + 'px)';
-            sendOrder.innerHTML = method;
-            paymentSwishOption.style.background = '#12465e';
-            paymentCardOption.style.background = '#12465e';
-            paymentCashOption.style.background = '#12465e';
-            document.getElementById(btn).style.background = '#166881';
-            paymentMethodToBackend.value = btn;
-        }
-
-        //Terms and conditions check//
-        document.getElementById('termsConditions').onchange = function(){
-            if(termsConditions.checked == true){
-                sendOrder.style.background = '#12465e';
-                sendOrder.style.pointerEvents = 'all';
-            }
-            else{
-                sendOrder.style.background = '#555';
-                sendOrder.style.pointerEvents = 'none';
-            }
-        }
-
-        //Press send order p//
-        document.getElementById('sendOrder').onclick = function(){
-            if(clientName.value != '' && clientNumber.value != '' && tableNumber.value != ''){
-                if(sendOrder.innerHTML.includes('Swish'))
-                    if(swishNumber.value != '')
-                    sendOrderFnction();
-                    else{
-                        alert('Please input the number for Swish');
-                        swishNumber.focus();
-                    }
-                else if(sendOrder.innerHTML == 'Pay with card'){
-                    if(cardName.value != '' && cardNumber.value != '')
-                    sendOrderFnction();
-                    else
-                    alert('Please fill all card details');
-                }
-                else
-                sendOrderFnction();
-            }
-            else
-            alert('Please fill all the obligatory field');
-        }
-
-        function sendOrderFnction(){
-            dateAndTime.value = new Date().toLocaleString();
-            totalPriceToBack.value = totalPrise.innerHTML;
-            cartItemsToBack.value = selectedItemDetails.value;
-            document.getElementsByTagName('body')[0].style.pointerEvents = 'none';
-            socket.emit('orderSent');
-            sendOrderBtn.click();
-        }
 
     </script>
 </html>

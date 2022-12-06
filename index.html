@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <title>HyresAvi</title>
+    <body>
+        <div class="cntrct">
+            <div id="mainDiv1">
+                <div id="div1">
+                    <input value="HYRESAVI" style="width: 100%; text-align: center; font-size: 20px;">
+                </div>
+                <div id="div2">
+                    <input value="SANDRA TRAN">
+                    <input value="Tel: 0707541153">
+                </div>
+                <div id="div3">
+                    <input value="Kundens namn">
+                    <input value="Bushra Alsada">
+                    <input value="Västgötagatan 17">
+                    <input value="64136 Katrineholm">
+                </div>
+                <div id="div4">
+                    <input value="Faktura nr: 17120112">
+                    <input value="Fakturadatum: 2022 12 20">
+                    <input value="Förfallodatum: 2022 12 30"><br>
+                    <input value="Bankgiro nr: 5758 - 4054">
+                </div>
+            </div>
+
+            <div id="mainDiv2">
+                <div id="leftTable">
+                    <input value="Beskrivning" style="background: #aaa; border-top: solid 2px #000; text-align: center;">
+                    <input value="Lägenhet 1201">
+                    <input value="December Hyra">
+                    <input>
+                    <input>
+                    <input>
+                    <input value="OBS! Om vi skulle behöva skicka en betalningspåminnelse så kostar denna 100 kr" style="font-size: 13px;">
+                    <input>
+                    <input value="Totalt" style="border-bottom: solid 2px #000">
+                </div>
+                <div id="rightTable">
+                    <input value="Summa" style="background: #aaa; border-top: solid 2px #000; text-align: center;">
+                    <input>
+                    <input value="5122 kr">
+                    <input>
+                    <input>
+                    <input>
+                    <input>
+                    <input>
+                    <input value="5122 kr" style="border-bottom: solid 2px #000">
+                </div>
+            </div>
+            <input id="note" value="Betalning skall vara oss tillhanda senast på förfallodagen. Vid betalning efter förfallodagen debiteras">
+            <input id="note2" value="påminnelseavgift samt dröjsmålsränta, för närvarande 9,5% ränta beräknad enligt 6 ränteldagen.">
+        </div>
+    </body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            outline: none;
+            font-size: 16px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+        }
+        body{
+            background: #aaa;
+        }
+        .cntrct{
+            position: relative;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
+        }
+        #mainDiv1{
+            position: absolute;
+            top: 40px;
+            width: 210mm;
+        }
+        #mainDiv1 > div{
+            display: flex;
+            flex-direction: column;
+        }
+        #mainDiv1 input{
+            padding: 5px 0;
+            border: none;
+        }
+        #div2{
+            position: absolute;
+            left: 40px;
+            top: 50px;
+        }
+        #div3{
+            position: absolute;
+            right: 40px;
+            top: 50px;
+        }
+        #div4{
+            position: absolute;
+            right: 40px;
+            top: 220px;
+        }
+
+        #mainDiv2{
+            position: absolute;
+            top: 450px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            display: flex;
+        }
+        #leftTable{
+            display: flex;
+            flex-direction: column;
+            width: 75%;
+        }
+        #leftTable > input{
+            border: solid 1px #000;
+            border-left: 2px solid #000;
+            padding-left: 3%;
+            height: 45px;
+            width: 100%;
+        }
+        #rightTable > input{
+            border: solid 1px #000;
+            border-right: 2px solid #000;
+            padding-left: 4%;
+            height: 45px;
+            width: 90%;
+        }
+        #rightTable{
+            width: 25%;
+        }
+
+        #note, #note2{
+            position: absolute;
+            left: 20px;
+            top: 250mm;
+            width: 90%;
+            border: none;
+            font-size: 13px;
+        }
+        #note2{
+            top: 255mm;
+        }
+    </style>
+</html>
