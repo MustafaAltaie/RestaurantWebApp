@@ -7,6 +7,7 @@ var newClient = new mongoose.Schema({
     cityNumber: {type: String},
     rent: {type: String},
     streetName: {type: String},
-    streetNumber: {type: String}
+    streetNumber: {type: String},
+    park: {type: String}
 });
 mongoose.model('clients', newClient);

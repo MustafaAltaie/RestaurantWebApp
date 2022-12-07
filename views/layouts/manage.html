@@ -11,16 +11,19 @@
         <input type="hidden" value="{{this.rent}}" class="rentDB">
         <input type="hidden" value="{{this.streetName}}" class="streetNameDB">
         <input type="hidden" value="{{this.streetNumber}}" class="streetNumberDB">
+        <input type="hidden" value="{{this.park}}" class="parkDB">
         {{/each}}
 
         <form action="/newClient" method="POST">
-            <input name="name" placeholder="Namn" class="inputBox">
-            <input name="homeNumber" placeholder="Lägenhet nummer" class="inputBox">
-            <input name="cityName" placeholder="Ort namn" class="inputBox">
-            <input name="cityNumber" placeholder="Ort nummer" class="inputBox">
-            <input name="rent" placeholder="Hyra" class="inputBox">
-            <input name="streetName" placeholder="Gatu namn" class="inputBox">
-            <input name="streetNumber" placeholder="Gatu nummer" class="inputBox">
+            <input type="hidden" name="clientId" id="clientIdText">
+            <input name="name" placeholder="Namn" id="nameText">
+            <input name="homeNumber" placeholder="Lägenhet nummer" id="homeNumberText">
+            <input name="cityName" placeholder="Ort namn" id="cityNameText">
+            <input name="cityNumber" placeholder="Ort nummer" id="cityNumberText">
+            <input name="rent" placeholder="Hyra" id="rentText">
+            <input name="streetName" placeholder="Gatu namn" id="streetNameText">
+            <input name="streetNumber" placeholder="Gatu nummer" id="streetNumberText">
+            <input type="number" name="park" placeholder="Parkering pris" id="parkText">
             <button id="sbmt">Lägg till hyresgästen</button>
         </form>
 
@@ -72,18 +75,29 @@
             button1.rent = document.getElementsByClassName('rentDB')[i].value;
             button1.streetName = document.getElementsByClassName('streetNameDB')[i].value;
             button1.streetNumber = document.getElementsByClassName('streetNumberDB')[i].value;
+            button1.park = document.getElementsByClassName('parkDB')[i].value;
             allNames.appendChild(button1);
         }
 
         document.addEventListener('click', function(evt){
-            if(evt.target.className == 'renters')
-            if(confirm('Säkert du vill ta bort ' + evt.target.name + ' ?') == true)
-            window.location.href = '/deleteClient/' + evt.target.idAddress;
+            if(evt.target.className == 'renters'){
+                clientIdText.value = evt.target.idAddress;
+                nameText.value = evt.target.name;
+                homeNumberText.value = evt.target.homeNumber;
+                cityNameText.value = evt.target.cityName;
+                cityNumberText.value = evt.target.cityNumber;
+                rentText.value = evt.target.rent;
+                streetNameText.value = evt.target.streetName;
+                streetNumberText.value = evt.target.streetNumber;
+                parkText.value = evt.target.park;
+                sbmt.innerHTML = 'Updatera information';
+                if(confirm('Säkert du vill ta bort ' + evt.target.name + ' ?') == true)
+                window.location.href = '/deleteClient/' + evt.target.idAddress;
+            }
         });
         
         document.getElementById('sbmt').onclick = function(){
             sbmt.style.display = 'none';
         }
-
     </script>
 </html>

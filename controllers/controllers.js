@@ -28,17 +28,25 @@ router.get('/addRemove', function(req, res){
 });
 
 router.post('/newClient', function(req, res){
-    var client = new Client();
-    client.name = req.body.name;
-    client.homeNumber = req.body.homeNumber;
-    client.cityName = req.body.cityName;
-    client.cityNumber = req.body.cityNumber;
-    client.rent = req.body.rent;
-    client.streetName = req.body.streetName;
-    client.streetNumber = req.body.streetNumber;
-    client.save(function(){
-        res.redirect('/');
-    }); 
+    if(req.body.clientId == ''){
+        var client = new Client();
+        client.name = req.body.name;
+        client.homeNumber = req.body.homeNumber;
+        client.cityName = req.body.cityName;
+        client.cityNumber = req.body.cityNumber;
+        client.rent = req.body.rent;
+        client.streetName = req.body.streetName;
+        client.streetNumber = req.body.streetNumber;
+        client.park = req.body.park;
+        client.save(function(){
+            res.redirect('/');
+        }); 
+    }
+    else{
+        Client.findByIdAndUpdate({_id: req.body.clientId}, req.body, {new: true}, function(err){
+            if(!err) res.redirect('/');
+        });
+    }
 });
 
 router.get('/deleteClient/:id', function(req, res){

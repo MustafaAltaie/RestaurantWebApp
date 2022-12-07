@@ -11,6 +11,7 @@
         <input type="hidden" value="{{this.rent}}" class="rentDB">
         <input type="hidden" value="{{this.streetName}}" class="streetNameDB">
         <input type="hidden" value="{{this.streetNumber}}" class="streetNumberDB">
+        <input type="hidden" value="{{this.park}}" class="parkDB">
         {{/each}}
         <div id="allNames">
             <a href="/addRemove">Lägg till eller ta bort hyresgäst</a>
@@ -44,9 +45,9 @@
                     <input value="Lägenhet Nummer" id="homeNumberText">
                     <input value="Monaden Hyra" id="monthRentText">
                     <input>
+                    <input id="monthParkText">
                     <input>
-                    <input>
-                    <input value="OBS! Om vi skulle behöva skicka en betalningspåminnelse så kostar denna 100 kr" style="font-size: 13px;">
+                    <input value="OBS! Om vi skulle behöva skicka en betalningspåminnelse så kostar denna 100 kr" style="font-size: 14px;">
                     <input>
                     <input value="Totalt" style="border-bottom: solid 2px #000">
                 </div>
@@ -55,7 +56,7 @@
                     <input class="prise">
                     <input value="5555 kr" id="rentText" class="prise">
                     <input class="prise">
-                    <input class="prise">
+                    <input class="prise" id="parkText">
                     <input class="prise">
                     <input class="prise">
                     <input class="prise">
@@ -131,12 +132,12 @@
         }
         #div3{
             position: absolute;
-            right: 40px;
+            right: 80px;
             top: 50px;
         }
         #div4{
             position: absolute;
-            right: 40px;
+            right: 80px;
             top: 220px;
         }
 
@@ -177,7 +178,7 @@
             top: 250mm;
             width: 90%;
             border: none;
-            font-size: 13px;
+            font-size: 15px;
         }
         #note2{
             top: 255mm;
@@ -195,6 +196,7 @@
             button1.rent = document.getElementsByClassName('rentDB')[i].value;
             button1.streetName = document.getElementsByClassName('streetNameDB')[i].value;
             button1.streetNumber = document.getElementsByClassName('streetNumberDB')[i].value;
+            button1.park = document.getElementsByClassName('parkDB')[i].value;
             allNames.appendChild(button1);
         }
 
@@ -214,10 +216,19 @@
                 ];
                 monthRentText.value = monthNames[new Date().getMonth()] + ' Hyra';
                 rentText.value = evt.target.rent + ' kr';
-                totalPriseText.value = evt.target.rent + ' kr';
+                if(evt.target.park != ""){
+                    parkText.value = evt.target.park + ' kr';
+                    monthParkText.value = 'Parkering avgift';
+                    totalPriseText.value = (parseInt(evt.target.rent) + parseInt(evt.target.park)) + ' kr';
+                }
+                else{
+                    parkText.value = '';
+                    monthParkText.value = '';
+                    totalPriseText.value = evt.target.rent + ' kr';
+                }
             }
 
-            if(evt.target.id == 'nameText')
+            if(evt.target.id == 'nameText' || evt.target.id == 'allNames')
             allNames.style.display = 'block';
             else
             allNames.style.display = 'none';
