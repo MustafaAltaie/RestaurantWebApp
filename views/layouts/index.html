@@ -211,6 +211,8 @@
                 var todayNumber = new Date().getDate();
                 if(todayNumber.toString().length == 1)
                 invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + parseInt(new Date().getMonth() + 1) + ' ' + '0' + new Date().getDate();
+                else
+                invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + parseInt(new Date().getMonth() + 1) + ' ' + new Date().getDate();
                 invoiceDueDateText.value = 'Förfallodatum: ' + new Date().getFullYear() + ' ' + parseInt(new Date().getMonth() + 1) + ' 30';
                 homeNumberText.value = 'Lägenhet ' + evt.target.homeNumber;
                 var monthNames = ["Januari", "Februari", "Mars", "April", "Maj", "Juni",
