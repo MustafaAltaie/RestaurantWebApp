@@ -2,6 +2,8 @@
 <html>
     <title>HyresAvi</title>
     <body>
+        <input type="text" id="currentMonth" value="10">
+        <button id="nextMonth">Nästa månad</button>
         {{#each clientList}}
         <input type="hidden" value="{{this._id}}" class="name_IdDB">
         <input type="hidden" value="{{this.name}}" class="nameDB">
@@ -78,6 +80,14 @@
         }
         body{
             background: #aaa;
+        }
+        #currentMonth, #nextMonth{
+            position: absolute;
+            right: 10px;
+        }
+        #nextMonth{
+            top: 50%;
+            padding: 30px;
         }
         #allNames{
             z-index: 100;
@@ -202,23 +212,38 @@
             allNames.appendChild(button1);
         }
 
+
+        document.getElementById('nextMonth').onclick = function(){
+            currentMonth.value = parseInt(currentMonth.value) + 1;
+            if(currentMonth.value > 12)
+            currentMonth.value = 1;
+            if(currentMonth.value.length == 1)
+            currentMonth.value = '0' + currentMonth.value;
+
+            invoiceNumberText.value = invoiceNumberText.value.substr(0, invoiceNumberText.value.length-2) + currentMonth.value;
+            invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + currentMonth.value + ' ' + new Date().getDate();
+            invoiceDueDateText.value = 'Förfallodatum: ' + new Date().getFullYear() + ' ' + currentMonth.value + ' 30';
+            var monthNames = ["Januari", "Februari", "Mars", "April", "Maj", "Juni",
+            "Juli", "Augusti", "September", "Oktober", "November", "December"
+            ];
+            monthRentText.value = monthNames[currentMonth.value-1] + ' Hyra';
+        }
+
         document.addEventListener('click', function(evt){
             if(evt.target.name != undefined && evt.target.name != ''){
+                currentMonth.value = parseInt(new Date().getMonth() + 1);
                 nameText.value = evt.target.name;
                 streetNameAndNumberText.value = evt.target.streetName + ' ' + evt.target.streetNumber;
                 cityNameAndNumberText.value = evt.target.cityNumber + ' ' + evt.target.cityName;
-                invoiceNumberText.value = 'Faktura nr: ' + evt.target.streetNumber + evt.target.homeNumber + parseInt(new Date().getMonth() + 1);
+                invoiceNumberText.value = 'Faktura nr: ' + evt.target.streetNumber + evt.target.homeNumber + currentMonth.value;
                 var todayNumber = new Date().getDate();
-                if(todayNumber.toString().length == 1)
-                invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + parseInt(new Date().getMonth() + 1) + ' ' + '0' + new Date().getDate();
-                else
-                invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + parseInt(new Date().getMonth() + 1) + ' ' + new Date().getDate();
-                invoiceDueDateText.value = 'Förfallodatum: ' + new Date().getFullYear() + ' ' + parseInt(new Date().getMonth() + 1) + ' 30';
+                invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + currentMonth.value + ' ' + new Date().getDate();
+                invoiceDueDateText.value = 'Förfallodatum: ' + new Date().getFullYear() + ' ' + currentMonth.value + ' 30';
                 homeNumberText.value = 'Lägenhet ' + evt.target.homeNumber;
                 var monthNames = ["Januari", "Februari", "Mars", "April", "Maj", "Juni",
                 "Juli", "Augusti", "September", "Oktober", "November", "December"
                 ];
-                monthRentText.value = monthNames[new Date().getMonth()] + ' Hyra';
+                monthRentText.value = monthNames[currentMonth.value-1] + ' Hyra';
                 rentText.value = evt.target.rent + ' kr';
                 if(evt.target.park != ""){
                     parkText.value = evt.target.park + ' kr';
