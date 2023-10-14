@@ -1,0 +1,125 @@
+body{
+    background: rgb(179, 196, 134);
+}
+img, h4, b{
+    pointer-events: none;
+}
+h4{
+    font-weight: normal;
+}
+
+#favoriteBackground{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1;
+}
+
+#cartWrapper{
+    z-index: 180;
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    cursor: pointer;
+}
+#cartWrapper > img{
+    width: 50px;
+}
+
+#favoriteContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 50px 150px 50px;
+}
+
+.items{
+    position: relative;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-height: 300px;
+    background: rgb(189, 205, 146);
+    transition: opacity 0.5s;
+}
+.items:hover{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.items:active{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+.itemImage{
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.heartFrame{
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    pointer-events: none;
+    top: 0;
+}
+.items > div{
+    text-align: center;
+}
+.items > div > p{
+    display: none;
+}
+.items > div > b{
+    color: #f10;
+}
+
+.heartWrapper{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 10px 0 0;
+    width: 40px;
+    cursor: pointer;
+}
+.heart{
+    width: 100%;
+    height: 100%;
+}
+
+#completeOrder{
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+
+@media only screen and (max-width: 1024px){
+    body #cartWrapper > img{
+        width: 100px;
+    }
+    body .items{
+        gap: 30px;
+        padding: 30px;
+        border-radius: 40px;
+        max-height: 413px;
+    }
+    body .itemImage, body .heartFrame{
+        width: 350px;
+        height: 350px;
+    }
+    body h4, body b{
+        font-size: 30px;
+    }
+    body .heartWrapper{
+        width: 80px;
+    }
+    body #favoriteContainer{
+        padding: 130px 50px 200px 50px;
+    }
+}

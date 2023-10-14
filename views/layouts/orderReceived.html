@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order received</title>
+    </head>
+    <body>
+        <h1></h1>
+
+        <div id="footer">
+            <div onclick="window.location.href = '/'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href='/favorite'">
+                <img src="/icons/heartIcon.png">
+                <p>Favorite</p>
+            </div>
+            <div onclick="window.location.href = '/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+        </div>
+
+    </body>
+
+    <style>
+        body{
+            text-align: center;
+            padding-top: 200px;
+            background: #1c73ff;
+        }
+        h1{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        document.getElementsByTagName('h1')[0].innerHTML = 'Thanks <b style="color: #fff">' + localStorage.mustafaAltaieRestaurantClientName + '</b> for using our app ☺';
+    </script>
+
+</html>

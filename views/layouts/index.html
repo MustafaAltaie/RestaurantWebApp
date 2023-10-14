@@ -1,277 +1,160 @@
 <!DOCTYPE html>
 <html>
-    <title>HyresAvi</title>
+    <head>
+        <title>Restaurant App</title>
+        <link rel="stylesheet" href="/styles/indexStyle.css">
+    </head>
+
     <body>
-        <input type="hidden" id="currentMonth" value="10">
-        <button id="nextMonth">Nästa månad</button>
-        {{#each clientList}}
-        <input type="hidden" value="{{this._id}}" class="name_IdDB">
-        <input type="hidden" value="{{this.name}}" class="nameDB">
-        <input type="hidden" value="{{this.homeNumber}}" class="homeNumberDB">
-        <input type="hidden" value="{{this.cityName}}" class="cityNameDB">
-        <input type="hidden" value="{{this.cityNumber}}" class="cityNumberDB">
-        <input type="hidden" value="{{this.rent}}" class="rentDB">
-        <input type="hidden" value="{{this.streetName}}" class="streetNameDB">
-        <input type="hidden" value="{{this.streetNumber}}" class="streetNumberDB">
-        <input type="hidden" value="{{this.park}}" class="parkDB">
-        {{/each}}
-        <div id="allNames">
-            <a href="/addRemove">Lägg till eller ta bort hyresgäst</a>
-        </div>
-        <div class="cntrct">
-            <div id="mainDiv1">
-                <div id="div1">
-                    <input value="HYRESAVI" style="width: 100%; text-align: center; font-size: 20px;">
-                </div>
-                <div id="div2">
-                    <input value="SANDRA TRAN">
-                    <input value="Tel: 0707541153">
-                </div>
-                <div id="div3">
-                    <input value="Kundens namn">
-                    <input value="Välj Namn" id="nameText" autocomplete="off" spellcheck="false">
-                    <input value="" id="streetNameAndNumberText">
-                    <input value="" id="cityNameAndNumberText">
-                </div>
-                <div id="div4">
-                    <input value="" id="invoiceNumberText">
-                    <input value="" id="invoiceDateText">
-                    <input value="" id="invoiceDueDateText"><br>
-                    <input value="Bankgiro nr: 5758 - 4054">
+        <div id="homeWrapper">
+            <div style="position: relative">
+                <img src="/icons/logo.png" id="logo">
+                <ul id="mainNav">
+                    <li onclick="window.location.href='/foods'">Food list</li>
+                    <li onclick="window.location.href='/contact'">Contact us</li>
+                    <li onclick="window.location.href='/about'">About us</li>
+                    <li style="padding: 5px 30px" id="accountPictureContainer"><img src="/icons/account.png" onerror="this.src='/icons/account.png'" id="accountPicture"></li>
+                </ul>
+            </div>
+
+
+            <div id="mainBackground">
+                <img src="/images/main.jpg">
+                <div class="center">
+                    <h1>Restaurant Name</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur quibusdam corrupti</p>
+                    <button>About us</button>
                 </div>
             </div>
 
-            <div id="mainDiv2">
-                <div id="leftTable">
-                    <input value="Beskrivning" style="background: #aaa; border-top: solid 2px #000; text-align: center;">
-                    <input value="Lägenhet Nummer" id="homeNumberText">
-                    <input value="Monaden Hyra" id="monthRentText">
-                    <input>
-                    <input id="monthParkText">
-                    <input>
-                    <input value="OBS! Om vi skulle behöva skicka en betalningspåminnelse så kostar denna 100 kr" style="font-size: 14px;">
-                    <input>
-                    <input value="Totalt" style="border-bottom: solid 2px #000">
+            <div class="navColor"></div>
+
+            <div id="home2">
+                <div id="home2Sec1">
+                    <img src="/images/cup1.jpg">
                 </div>
-                <div id="rightTable">
-                    <input value="Summa" style="background: #aaa; border-top: solid 2px #000; text-align: center;">
-                    <input class="prise">
-                    <input value="5555 kr" id="rentText" class="prise">
-                    <input class="prise">
-                    <input class="prise" id="parkText">
-                    <input class="prise">
-                    <input class="prise">
-                    <input class="prise">
-                    <input value="5555 kr" id="totalPriseText" style="border-bottom: solid 2px #000">
+                <div id="home2Sec2">
+                    <p>Lorem ipsum dolor sit</p>
+                    <h1 style="color:rgb(223, 196, 107)">Lorem ipsum dolor sit, amet consectetur</h1>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab repellat aspernatur, placeat mollitia aliquid, sunt assumenda optio, consequatur quia impedit distinctio repudiandae sit soluta dicta ut perspiciatis error corporis deserunt.</p>
+                    <button>Our coffee</button>
                 </div>
             </div>
-            <input id="note" value="Betalning skall vara oss tillhanda senast på förfallodagen. Vid betalning efter förfallodagen debiteras">
-            <input id="note2" value="påminnelseavgift samt dröjsmålsränta, för närvarande 9,5% ränta beräknad enligt 6 ränteldagen.">
+
+            <div class="navColor"></div>
+
+            <div id="home3">
+                <div class="center">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab repellat aspernatur, placeat mollitia aliquid, sunt assumenda optio, consequatur quia impedit distinctio repudiandae sit soluta dicta ut perspiciatis error corporis deserunt.</p>
+                    <button style="background: #111">Food list</button>
+                </div>
+            </div>
+
+            <div class="navColor"></div>
+
+            <div id="home4">
+                <div class="center">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab repellat aspernatur, placeat mollitia aliquid, sunt assumenda optio, consequatur quia impedit distinctio repudiandae sit soluta dicta ut perspiciatis error corporis deserunt.</p>
+                    <button style="background: #111">Contact us</button>
+                </div>
+            </div>
+
+            <div class="navColor"></div>
+
+            <div id="home5">
+                <div id="home5Wrapper1">
+                    <img src="/images/dec43.jpg">
+                    <div class="center">
+                        <h2>Lorem, ipsum dolor sit amet consectetur</h2>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab repellat aspernatur, placeat mollitia aliquid, sunt assumenda</p>
+                        <button>Coffee</button>
+                    </div>
+                </div>
+                <div id="home5Wrapper2">
+                    <div>
+                        <img src="/images/dec42.jpg">
+                        <div class="center">
+                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/images/dec41.jpg">
+                        <div class="center">
+                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/images/dec44.jpg">
+                        <div class="center">
+                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/images/dec45.jpg">
+                        <div class="center">
+                            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navColor"></div>
+
+            <div id="home6">
+                <div id="footer1">
+                    <ul>
+                        <li style="font-size: 20px; color: #fff;">Lorem</li>
+                        <li>ipsum</li>
+                        <li>sit amet</li>
+                        <li>consectetur</li>
+                        <li>adipisicing</li>
+                        <li>elit</li>
+                    </ul>
+                    <ul>
+                        <li style="font-size: 20px; color: #fff;">Lorem ipsum</li>
+                        <li>ipsum sit amet</li>
+                        <li>sit amet</li>
+                        <li>consectetur</li>
+                        <li>adipisicing</li>
+                        <li>elit</li>
+                    </ul>
+                    <ul>
+                        <li style="font-size: 20px; color: #fff;">Lorem adipisicing</li>
+                        <li>ipsum sit amet</li>
+                        <li>sit amet</li>
+                        <li>consectetur</li>
+                        <li>adipisicing</li>
+                        <li>elit consectetur</li>
+                    </ul>
+                    <ul>
+                        <li style="font-size: 20px; color: #fff;">Lorem ipsum</li>
+                        <li>ipsum</li>
+                        <li>sit amet sit amet</li>
+                        <li>consectetur</li>
+                        <li>adipisicing elit</li>
+                        <li>elit ipsum</li>
+                    </ul>
+                </div>
+
+                <div id="footer2">
+                    <div class="center">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit nesciunt.</p>
+                        <div>
+                            <img src="/icons/fb.png">
+                            <img src="/icons/insta.png">
+                            <img src="/icons/phone.png">
+                            <img src="/icons/location.png">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="accountOptionList">
+            <p onclick="goToManageAccount()">Manage account</p>
+            <p id="signInout">Logout</p>
         </div>
     </body>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            outline: none;
-            font-size: 16px;
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-        }
-        body{
-            background: #fff;
-        }
-        #currentMonth, #nextMonth{
-            position: absolute;
-            right: 10px;
-        }
-        #nextMonth{
-            top: 50%;
-            padding: 30px;
-        }
-        #allNames{
-            z-index: 100;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 500px;
-            min-width: 100px;
-            background: #111;
-            text-align: center;
-            padding: 50px 10px 10px 10px;
-            display: none;
-        }
-        #allNames > button{
-            padding: 10px;
-            margin: 10px;
-            cursor: pointer;
-        }
-        #allNames > a{
-            position: absolute;
-            right: 0;
-            top: 0;
-            padding: 10px;
-            color: #0a0;
-            text-decoration: none;
-        }
-
-        .cntrct{
-            position: relative;
-            background: #fff;
-            width: 210mm;
-            height: 297mm;
-        }
-        #mainDiv1{
-            position: absolute;
-            top: 40px;
-            width: 210mm;
-        }
-        #mainDiv1 > div{
-            display: flex;
-            flex-direction: column;
-        }
-        #mainDiv1 input{
-            padding: 5px 0;
-            border: none;
-        }
-        #div2{
-            position: absolute;
-            left: 40px;
-            top: 50px;
-        }
-        #div3{
-            position: absolute;
-            right: 40px;
-            top: 50px;
-            width: 30%;
-        }
-        #div4{
-            position: absolute;
-            right: 40px;
-            top: 220px;
-            width: 30%;
-        }
-
-        #mainDiv2{
-            position: absolute;
-            top: 450px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 95%;
-            display: flex;
-        }
-        #leftTable{
-            display: flex;
-            flex-direction: column;
-            width: 75%;
-        }
-        #leftTable > input{
-            border: solid 1px #000;
-            border-left: 2px solid #000;
-            padding-left: 3%;
-            height: 45px;
-            width: 100%;
-        }
-        #rightTable > input{
-            border: solid 1px #000;
-            border-right: 2px solid #000;
-            padding-left: 4%;
-            height: 45px;
-            width: 90%;
-        }
-        #rightTable{
-            width: 25%;
-        }
-
-        #note, #note2{
-            position: absolute;
-            left: 20px;
-            top: 250mm;
-            width: 90%;
-            border: none;
-            font-size: 15px;
-        }
-        #note2{
-            top: 255mm;
-        }
-    </style>
-    <script>
-        if(document.getElementsByClassName('name_IdDB').length != 0)
-        for(i = 0; i < document.getElementsByClassName('name_IdDB').length; i++){
-            var button1 = document.createElement('button');
-            button1.innerHTML = document.getElementsByClassName('nameDB')[i].value;
-            button1.name = document.getElementsByClassName('nameDB')[i].value;
-            button1.homeNumber = document.getElementsByClassName('homeNumberDB')[i].value;
-            button1.cityName = document.getElementsByClassName('cityNameDB')[i].value;
-            button1.cityNumber = document.getElementsByClassName('cityNumberDB')[i].value;
-            button1.rent = document.getElementsByClassName('rentDB')[i].value;
-            button1.streetName = document.getElementsByClassName('streetNameDB')[i].value;
-            button1.streetNumber = document.getElementsByClassName('streetNumberDB')[i].value;
-            button1.park = document.getElementsByClassName('parkDB')[i].value;
-            allNames.appendChild(button1);
-        }
-
-
-        document.getElementById('nextMonth').onclick = function(){
-            currentMonth.value = parseInt(currentMonth.value) + 1;
-            if(currentMonth.value > 12)
-            currentMonth.value = 1;
-            if(currentMonth.value.length == 1)
-            currentMonth.value = '0' + currentMonth.value;
-
-            invoiceNumberText.value = invoiceNumberText.value.substr(0, invoiceNumberText.value.length-2) + currentMonth.value;
-            invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + currentMonth.value + ' ' + new Date().getDate();
-            invoiceDueDateText.value = 'Förfallodatum: ' + new Date().getFullYear() + ' ' + currentMonth.value + ' 30';
-            var monthNames = ["Januari", "Februari", "Mars", "April", "Maj", "Juni",
-            "Juli", "Augusti", "September", "Oktober", "November", "December"
-            ];
-            monthRentText.value = monthNames[currentMonth.value-1] + ' Hyra';
-        }
-
-        document.addEventListener('click', function(evt){
-            if(evt.target.name != undefined && evt.target.name != ''){
-                currentMonth.value = parseInt(new Date().getMonth() + 1);
-                nameText.value = evt.target.name;
-                streetNameAndNumberText.value = evt.target.streetName + ' ' + evt.target.streetNumber;
-                cityNameAndNumberText.value = evt.target.cityNumber + ' ' + evt.target.cityName;
-                invoiceNumberText.value = 'Faktura nr: ' + evt.target.streetNumber + evt.target.homeNumber + currentMonth.value;
-                var todayNumber = new Date().getDate();
-                invoiceDateText.value = 'Fakturadatum: ' + new Date().getFullYear() + ' ' + currentMonth.value + ' ' + new Date().getDate();
-                invoiceDueDateText.value = 'Förfallodatum: ' + new Date().getFullYear() + ' ' + currentMonth.value + ' 30';
-                homeNumberText.value = 'Lägenhet ' + evt.target.homeNumber;
-                var monthNames = ["Januari", "Februari", "Mars", "April", "Maj", "Juni",
-                "Juli", "Augusti", "September", "Oktober", "November", "December"
-                ];
-                monthRentText.value = monthNames[currentMonth.value-1] + ' Hyra';
-                rentText.value = evt.target.rent + ' kr';
-                if(evt.target.park != ""){
-                    parkText.value = evt.target.park + ' kr';
-                    monthParkText.value = 'Parkering avgift';
-                    totalPriseText.value = (parseInt(evt.target.rent) + parseInt(evt.target.park)) + ' kr';
-                }
-                else{
-                    parkText.value = '';
-                    monthParkText.value = '';
-                    totalPriseText.value = evt.target.rent + ' kr';
-                }
-            }
-
-            if(evt.target.id == 'nameText' || evt.target.id == 'allNames')
-            allNames.style.display = 'block';
-            else
-            allNames.style.display = 'none';
-        });
-
-        document.addEventListener('input', function(evt){
-            if(evt.target.className == 'prise'){
-                var totalOtherPrices = 0;
-                for(i = 0; i < 7; i++)
-                if(document.getElementsByClassName('prise')[i].value != '')
-                totalOtherPrices += parseInt(document.getElementsByClassName('prise')[i].value.replace(/\D/g, ''));
-                totalPriseText.value = totalOtherPrices + ' kr';
-            }
-        });
-
-    </script>
+    <script src="/scripts/indexScript.js"></script>
 </html>

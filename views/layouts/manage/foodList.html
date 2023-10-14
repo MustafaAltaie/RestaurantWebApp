@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Food list</title>
+        <link rel="stylesheet" href="/styles/foodListStyle.css">
+        <link rel="stylesheet" href="/styles/settingStyle.css">
+    </head>
+    <body>
+
+        {{#each itemList}}
+        <input type="hidden" value="{{this._id}}" class="item_idDB">
+        <input type="hidden" value="{{this.catigory}}" class="catigoryDB">
+        <input type="hidden" value="{{this.title}}" class="titleDB">
+        <input type="hidden" value="{{this.price}}" class="priceDB">
+        <input type="hidden" value="{{this.description}}" class="descriptionDB">
+        {{/each}}
+
+        <div id="mainContainer">
+
+            <div id="cartWrapper">
+                <img src="/icons/cart.png">
+            </div>
+
+            <div id="foodSlider">
+                <div class="setting3Buttons" id="foodSliderSettingButton">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <div id="foodSliderSettings" class="settingMenu">
+                    <p onclick="sliderImageViewAddText.click()">Add image</p>
+                    <p id="foodSliderSettingsRemove">Remove image</p>
+                </div>
+
+                <div id="sliderImageView"></div>
+
+                <form id="sliderImageViewAdd" style="display: none" enctype="multipart/form-data">
+                    <input type="file" name="file" id="sliderImageViewAddText">
+                    <button id="sliderImageViewAddSubmit"></button>
+                </form>
+
+                <form id="sliderImageViewDelete" style="display: none">
+                    <input id="sliderImageViewDeleteText">
+                    <button id="sliderImageViewDeleteSubmit"></button>
+                </form>
+            </div>
+
+            <div id="footer">
+                <div onclick="window.location.href = '/manage'">
+                    <img src="/icons/home.png">
+                    <p>Home</p>
+                </div>
+                <div onclick="window.location.href = '/messages'">
+                    <img src="/icons/message.png">
+                    <p>Messages</p>
+                </div>
+                <div onclick="window.location.href = '/orders'">
+                    <img src="/icons/orders.png">
+                    <p>Orders</p>
+                </div>
+                <div onclick="window.location.href = '/allUsers'">
+                    <img src="/icons/allUsers.png">
+                    <p>All users</p>
+                </div>
+            </div>
+
+            <div id="itemSettings" class="settingMenu">
+                <input id="itemSettingIdText" class="itemSettingsInput">
+                <p id="itemSettingsSaveChanges">Save changes</p>
+                <p onclick="itemFileText.click()">Change image</p>
+                <p id="itemSettingCatigory">Change item catigory</p>
+                <input id="itemSettingCatigoryText" class="itemSettingsInput">
+                <p id="itemSettingTitle">Change title</p>
+                <input id="itemSettingTitleText" class="itemSettingsInput">
+                <p id="itemSettingPrice">Change price</p>
+                <input id="itemSettingPriceText" class="itemSettingsInput">
+                <p id="itemSettingDescription">Change description</p>
+                <textarea id="itemSettingDescriptionText" class="itemSettingsInput"></textarea>
+                <p id="itemSettingDelete" class="removeButton" onclick="deleteItemSubmit.click(); itemSettings.style.display='none'">Remove item</p>
+            </div>
+
+            <div id="itemMainContainer">
+
+                <div id="foodNav"></div>
+
+                <div id="itemContainer" style="position: relative">
+                    <div class="setting3Buttons" id="itemContainerSettingButton">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+
+                    <form id="addNewItemForm" enctype="multipart/form-data">
+                        <input name="_id" type="hidden" id="itemIdText">
+                        <input name="catigory" id="itemCatigoryText" placeholder="Item catigory">
+                        <input name="title" id="itemTitleText" placeholder="Item title">
+                        <input name="price" id="itemPriceText" placeholder="Item price">
+                        <input name="description" id="itemDescriptionText" placeholder="Item description">
+                        <input name="file" type="file" id="itemFileText" style="display: none">
+                        <input type="hidden" name="oldTitle" id="itemOldTitleText">
+                        <p id="itemImageButton">Item image</p>
+                        <button style="display: none" id="addItemSubmit"></button>
+                    </form>
+
+                    <div id="itemContainerSettings" class="settingMenu">
+                        <p id="addNewItem">Add new item</p>
+                    </div>
+
+                    {{#each currencyTyp}}
+                    <input id="currencyIdDB" type="hidden" value="{{this._id}}">
+                    <input id="currencyDB" type="hidden" value="{{this.currencyTyp}}">
+                    {{/each}}
+
+                    <input id="currency" placeholder="Currency" onchange="currencyFormSubmit.click()">
+
+                    <form id="currencyForm" style="display: none">
+                        <button id="currencyFormSubmit"></button>
+                    </form>
+
+                    <form id="deleteItemFrom" style="display: none">
+                        <button id="deleteItemSubmit"></button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <input type="hidden" id="imageSliderImages" value="{{imageSliderImages}}">
+    </body>
+
+
+    <script src="/scripts/foodListScript.js"></script>
+
+    <script src="/scripts/foodListBackend.js"></script>
+</html>

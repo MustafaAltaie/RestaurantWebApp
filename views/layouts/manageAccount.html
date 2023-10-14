@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Manage account</title>
+    </head>
+
+    <body>
+        <div id="chatWrapper">
+            <img src="/icons/messageWhite.png" id="chat">
+            <p id="chatAmount">1</p>
+        </div>
+
+        <div id="messageWrapper">
+            <p id="contactUs" onclick="window.location.href='/contact'">Contact us</p>
+        </div>
+
+        <div id="footer">
+            <div onclick="window.location.href = '/'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href='/favorite'">
+                <img src="/icons/heartIcon.png">
+                <p>Favorite</p>
+            </div>
+            <div onclick="window.location.href = '/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+            <div onclick="window.location.href = '/account'">
+                <img src="/icons/accountIcon.png">
+                <p>Account</p>
+            </div>
+        </div>
+
+        <div id="mainContainer">
+            <div id="header">
+                <h1>General Profile Settings</h1>
+            </div>
+            <div id="mainWrapper">
+                
+                <div id="infoWrapper">
+                    <div style="position: relative; align-items: center;">
+                        <h1 id="fullName" style="color: #0464fc"></h1>
+                        <img id="personalImage" src="/user pictures/mustafaphoto111@gmail.com.jpg" onerror="this.src='/icons/account.png'">
+                        <p id="changePicture" onclick="picture.click()">✎</p>
+                    </div>
+
+                    <form id="PersonalInfoWrapper">
+                        <input name="_id" id="idDB" type="hidden">
+                        <input name="userFirstName" id="firstName" placeholder="First name">
+                        <input name="userLastName" id="lastName" placeholder="Last name">
+                        <input name="userNumber" id="number" placeholder="Mobile number">
+                        <input name="userAddress" id="address" placeholder="Address">
+                        <input name="userEmail" id="email" placeholder="Email">
+                        <input name="file" id="picture" type="file" style="display: none">
+                        <p id="changePassword" style="color: #0464fc; font-weight: bold">Change password</p>
+                        <input name="userPassword" id="password" type="password" style="display: none">
+                        <input name="oldEmail" id="oldEmail" style="display: none">
+                        <button id="PersonalInfoWrapperSubmit">Save changes</button>
+                    </form>
+
+                    <form id="resetPassword" style="display: none">
+                        <button id="resetPasswordSubmit"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="passwordChangeDiv">
+            <h1>Change password</h1>
+            <input type="password" id="passwordChangeOldPassword" placeholder="Old password">
+            <input type="password" id="passwordChangeNewPassword" placeholder="New password" style="display: none">
+            <input type="number" id="passwordChangeByMobile" placeholder="Your phone number" style="display: none">
+            <input type="number" id="digitNumber" placeholder="5 digits number" style="display: none" autocomplete="off">
+            <button id="passwordChangeButton">OK</button>
+            <p id="passwordChangeAnotherWay">Change using phone number</p>
+        </div>
+
+        <form id="deleteMessageForm" style="display: none">
+            <button id="deleteMessageSubmit"></button>
+        </form>
+    </body>
+
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+            background: #5596ff;
+        }
+        h1{
+            font-weight: normal;
+        }
+
+        #chatWrapper, #messageWrapper, .chatDelete{
+            z-index: 100;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+        #chatWrapper > img{
+            pointer-events: none;
+            width: 50px;
+        }
+        #chatWrapper > p{
+            position: absolute;
+            left: 65%;
+            top: 55%;
+            background: #f21;
+            color: #fff;
+            width: 25px;
+            height: 23.5px;
+            padding: 1.5px 0 0 0;
+            text-align: center;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        #messageWrapper{
+            top: 70px;
+            background: #fff;
+            padding: 45px 25px 0 25px;
+            border-radius: 30px;
+            max-height: 430px;
+            max-width: 300px;
+            border-bottom: solid 25px #fff;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+            overflow-y: scroll;
+            display: none;
+        }
+        #messageWrapper::-webkit-scrollbar{
+            display: none;
+        }
+        #contactUs{
+            position: absolute;
+            padding: 10px 0;
+            color: #fff;
+            background: #d83125;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+        #contactUs:hover, .message:hover{
+            background: #ef372a
+        }
+        .message:hover{
+            background: #0066ff
+        }
+        .message{
+            position: relative;
+            background: #0c5fdc;
+            color: #fff;
+            border: solid 1px #999;
+            padding: 30px 20px 20px 30px;
+            border-radius: 0 25px 25px 25px;
+            margin: 20px 0 0 0;
+            transition: opacity 0.5s;
+        }
+        .message > h3{
+            color: #fd3;
+        }
+        .chatDelete{
+            top: 0;
+            left: 0;
+            padding: 5px 10px;
+        }
+        .chatDelete:hover{
+            background: rgb(255, 44, 24);
+        }
+
+        #mainContainer{
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            transform: translate(-50%, -50%);
+        }
+        #header{
+            position: relative;
+            background: #0464fc;
+            padding: 30px 0;
+            color: #fff;
+            text-align: center;
+            border-radius: 50px 50px 0 0;
+            width: 1000px;
+        }
+        #mainWrapper{
+            background: #fff;
+            border-left: solid 20px #0464fc;
+            border-bottom: solid 1px #555;
+            border-right: solid 1px #555;
+            border-radius: 0 0 50px 20px;
+            overflow: hidden;
+            width: 979px;
+            margin-top: -1px;
+        }
+        #infoWrapper{
+            padding: 10px 50px;
+            display: flex;
+            gap: 50px;
+        }
+        #infoWrapper > div > img{
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        #infoWrapper > div > p{
+            position: absolute;
+            top: 70%;
+            left: 20%;
+            font-size: 22px;
+            cursor: pointer;
+            background: #0464fc;
+            color: #fff;
+            border-radius: 50%;
+            min-width: 40px;
+            min-height: 40px;
+            text-align: center;
+        }
+        #infoWrapper > div, #infoWrapper > form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            width: 50%;
+        }
+        #PersonalInfoWrapper{
+            display: flex;
+            flex-direction: column;
+            padding: 50px 0;
+        }
+        input, button{
+            border: solid 1px #999;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        p, button{
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button{
+            background: #0464fc;
+            color: #fff;
+        }
+
+        #passwordChangeDiv{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            background: #fff;
+            border: solid 1px #777;
+            padding: 100px;
+            border-radius: 20px;
+        }
+    </style>
+
+    <script>
+        idDB.value = localStorage.mustafaAltaieRestaurantMyIdDB;
+        firstName.value = localStorage.mustafaAltaieRestaurantMyFirstName;
+        lastName.value = localStorage.mustafaAltaieRestaurantMyLastName;
+        number.value = localStorage.mustafaAltaieRestaurantMyNumber;
+        email.value = localStorage.mustafaAltaieRestaurantMyEmail;
+        address.value = localStorage.mustafaAltaieRestaurantMyAddress;
+        password.value = localStorage.mustafaAltaieRestaurantMyPassword;
+        oldEmail.value = localStorage.mustafaAltaieRestaurantMyEmail;
+
+        personalImage.src = '/user pictures/' + email.value + '.jpg';
+
+        fullName.innerHTML = firstName.value + ' ' + lastName.value;
+
+        $(document).ready(function(){
+            $("#PersonalInfoWrapper").on("submit", function(evt){
+                evt.preventDefault();
+                $.ajax({
+                    url: '/UpdatePersonalInfo',
+                    method: 'post',
+                    contentType: false,
+                    data: new FormData(this),
+                    processData: false,
+                    success: function(){
+                        localStorage.mustafaAltaieRestaurantMyFirstName = firstName.value;
+                        localStorage.mustafaAltaieRestaurantMyLastName = lastName.value;
+                        localStorage.mustafaAltaieRestaurantMyNumber = number.value;
+                        localStorage.mustafaAltaieRestaurantMyEmail = email.value;
+                        localStorage.mustafaAltaieRestaurantMyAddress = address.value;
+                        localStorage.mustafaAltaieRestaurantMyPassword = password.value;
+                        passwordChangeButton.innerHTML = 'OK';
+                        alert('Successfully changed!');
+                        if(oldEmail.value != email.value)
+                        window.location.href = '/manageAccount/' + email.value;
+                    }
+                });
+            });
+
+            $("#resetPassword").on("submit", function(evt){
+                evt.preventDefault();
+                $.ajax({
+                    url: '/resetPassword',
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        code: randomCode,
+                        number: passwordChangeByMobile.value
+                    }),
+                    success: function(){
+                        digitNumber.style.display = 'block';
+                        passwordChangeButton.innerHTML = 'Reset password';
+                        passwordChangeByMobile.style.display = 'none';
+                    }
+                });
+            });
+
+            $("#deleteMessageForm").on("submit", function(evt){
+                evt.preventDefault();
+                $.ajax({
+                    url: '/deleteChat',
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        newMessage: newChat,
+                        email: email.value
+                    })
+                });
+            });
+        });
+
+
+        var imageType = '.jpg .bmp .png jpeg .JPG .BMP .PNG';
+
+        document.getElementById('picture').onchange = function(evt){
+            if(imageType.includes(picture.value.slice(picture.value.length-4, picture.value.length))){
+                var tgt = evt.target || window.event.srcElement,
+                files = tgt.files;
+                var fr = new FileReader();
+                fr.onload = function(){
+                    personalImage.src = fr.result;
+                }
+                fr.readAsDataURL(files[0]);
+            }
+            else{
+                alert('File is not image!');
+                picture.value = '';
+                personalImage.src = '/user pictures/' + email.value + '.jpg';
+            }
+        }
+
+        let randomCode = 0;
+
+        document.addEventListener('mousedown', function(evt){
+            if(evt.target.id == 'changePassword'){
+                passwordChangeDiv.style.display = 'flex';
+                for(i = 0; i < passwordChangeDiv.getElementsByTagName('input').length; i++){
+                    passwordChangeDiv.getElementsByTagName('input')[i].style.display = 'none';
+                    passwordChangeDiv.getElementsByTagName('input')[i].value = '';
+                }
+                passwordChangeOldPassword.style.display = 'block';
+                passwordChangeAnotherWay.style.display = 'block';
+                passwordChangeButton.innerHTML = 'OK';
+                passwordChangeButton.style.display = 'block';
+            }
+            else if(evt.target.parentNode.id == 'passwordChangeDiv'
+            || evt.target.id == 'passwordChangeDiv')
+            passwordChangeDiv.style.display = 'flex';
+            else
+            passwordChangeDiv.style.display = 'none';
+
+            if(evt.target.id == 'passwordChangeButton'){
+                if(passwordChangeButton.innerHTML == 'OK'){
+                    if(passwordChangeOldPassword.value == localStorage.mustafaAltaieRestaurantMyPassword){
+                        passwordChangeOldPassword.style.display = 'none';
+                        passwordChangeNewPassword.style.display = 'block';
+                    }
+                    else
+                    alert('Wrong password!');
+                }
+                else if(passwordChangeButton.innerHTML == 'Send'){
+                    var rnd = parseInt(Math.ceil(Math.random()*9999)) + 10000;
+                    randomCode = rnd;
+                    resetPasswordSubmit.click();
+                }
+                else if(passwordChangeButton.innerHTML == 'Reset password'){
+                    if(digitNumber.value == randomCode){
+                        passwordChangeNewPassword.style.display = 'block';
+                        digitNumber.style.display = 'none';
+                    }
+                }
+                else{
+                    password.value = passwordChangeNewPassword.value;
+                    PersonalInfoWrapperSubmit.click();
+                    passwordChangeDiv.style.display = 'none';
+                }
+            }
+
+            if(evt.target.id == 'passwordChangeAnotherWay'){
+                passwordChangeNewPassword.style.display = 'none';
+                passwordChangeOldPassword.style.display = 'none';
+                passwordChangeByMobile.style.display = 'block';
+                passwordChangeAnotherWay.style.display = 'none';
+                passwordChangeButton.innerHTML = 'Send';
+                passwordChangeByMobile.value = number.value;
+            }
+        });
+
+
+        document.getElementById('passwordChangeNewPassword').oninput = function(){
+            if(passwordChangeNewPassword.value != ''
+            && passwordChangeNewPassword.value != localStorage.mustafaAltaieRestaurantMyPassword)
+            passwordChangeButton.innerHTML = 'Change password';
+            else
+            passwordChangeButton.innerHTML = 'OK';
+        }
+
+        document.getElementById('passwordChangeByMobile').oninput = function(){
+            if(passwordChangeByMobile.value != ''){
+                passwordChangeButton.innerHTML = 'Send';
+                passwordChangeButton.style.display = 'block';
+            }
+            else
+            passwordChangeButton.style.display = 'none';
+        }
+
+        document.addEventListener('click', function(evt){
+            if(evt.target.id == 'chatWrapper'){
+                if(document.getElementsByClassName('message').length != 0)
+                messageWrapper.style.display = 'block';
+            }
+            else{
+                if(evt.target.id != 'messageWrapper'
+                && evt.target.parentNode.id != 'messageWrapper'
+                && evt.target.parentNode.className != 'message'
+                && evt.target.className != 'message')
+                messageWrapper.style.display = 'none';
+            }
+
+            if(evt.target.className == 'chatDelete'){
+                document.getElementById(evt.target.id.slice(0, evt.target.id.length-3)).style.opacity = 0;
+                setTimeout(function(){
+                    document.getElementById(evt.target.id.slice(0, evt.target.id.length-3)).remove();
+                    numOfMessages();
+                    newChatFunction();
+                    deleteMessageSubmit.click();
+                    if(document.getElementsByClassName('message').length != 0)
+                    messageWrapper.style.display = 'block';
+                }, 300);
+            }
+        });
+
+        let newChat = '';
+
+        function newChatFunction(){
+            newChat = '';
+            if(document.getElementsByClassName('messageText').length != 0)
+            for(i = 0; i < document.getElementsByClassName('messageText').length; i++)
+            newChat += document.getElementsByClassName('messageText')[i].innerHTML + '//and//';
+        }
+
+        let myMessage = '{{myMessage}}';
+
+        if(myMessage != '' || myMessage != undefined)
+        for(i = 0; i < myMessage.split('//and//').length-1; i++){
+            let message = document.createElement('div');
+            message.id = 'message' + i;
+            message.className = 'message';
+                let chatDelete = document.createElement('h4');
+                chatDelete.id = message.id + 'Del';
+                chatDelete.className = 'chatDelete';
+                chatDelete.innerHTML = 'X';
+                let h3 = document.createElement('h3');
+                h3.innerHTML = 'MA-restaurant teem';
+                let p = document.createElement('p');
+                p.className = 'messageText';
+                p.innerHTML = myMessage.split('//and//')[i];
+            message.appendChild(chatDelete);
+            message.appendChild(h3);
+            message.appendChild(p);
+
+            messageWrapper.appendChild(message);
+        }
+
+        function numOfMessages(){
+            chatAmount.innerHTML = document.getElementsByClassName('message').length;
+            if(document.getElementsByClassName('message').length == 0){
+                chatAmount.style.display = 'none';
+                messageWrapper.style.display = 'none';
+            }
+        }
+        numOfMessages();
+    </script>
+</html>

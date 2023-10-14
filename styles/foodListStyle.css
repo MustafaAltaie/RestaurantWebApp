@@ -1,0 +1,153 @@
+body{
+    background: #fff;
+}
+img, h4, b{
+    pointer-events: none;
+}
+h4{
+    font-weight: normal;
+}
+button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #111;
+}
+
+#cartWrapper{
+    z-index: 180;
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    cursor: pointer;
+}
+#cartWrapper > img{
+    width: 50px;
+}
+
+#foodSlider{
+    position: relative;
+    height: 65%;
+    padding: 2% 2% 0 2%;
+}
+#foodSlider > img{
+    position: absolute;
+    width: 96%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    object-position: top;
+    transition: opacity 1s, object-position 10s;
+}
+
+#foodNav{
+    z-index: 100;
+    background: #fff;
+    position: sticky;
+    top: -1px;
+    display: flex;
+    border-bottom: solid 1px #111;
+}
+#foodNav > h3{
+    padding: 20px 30px;
+    white-space: nowrap;
+    cursor: pointer;
+    border-right: solid 1px #999;
+}
+#foodNav > h3:hover{
+    background: #eee;
+}
+
+#itemContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 2% 0 7% 0;
+    justify-content: center;
+}
+
+.items{
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.items:hover{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.items:active{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+.itemImage{
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.items > div{
+    text-align: center;
+}
+.items > div > p{
+    display: none;
+}
+.items > div > b{
+    color: #f10;
+}
+
+.heartWrapper{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 10px 0 0;
+    width: 40px;
+    cursor: pointer;
+}
+.heart{
+    width: 100%;
+    height: 100%;
+}
+
+
+@media only screen and (max-width: 1024px){
+    body #foodSlider{
+        height: 50%;
+    }
+    body #itemContainer{
+        padding: 5% 0 22% 0;
+    }
+    body #footer{
+        width: 100%;
+    }
+    body #cartWrapper > img{
+        width: 100px;
+    }
+    body .items{
+        gap: 30px;
+        padding: 30px;
+        border-radius: 40px;
+        max-height: 400px;
+    }
+    body .itemImage{
+        width: 350px;
+        height: 350px;
+    }
+    body h4, body b{
+        font-size: 30px;
+    }
+    body .heartWrapper{
+        width: 80px;
+    }
+    body #foodNav > h3{
+        padding: 40px 70px;
+        font-size: 30px;
+    }
+}

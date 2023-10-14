@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Account</title>
+        <link rel="stylesheet" href="/styles/accountStyle.css">
+    </head>
+    <body>
+
+        <div id="footer">
+            <div onclick="window.location.href = '/'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href = '/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+            <div onclick="window.location.href='/favorite'">
+                <img src="/icons/heartIcon.png">
+                <p>Favorite</p>
+            </div>
+        </div>
+
+        <div id="signInForm" class="accountForm">
+            <h1>Login</h1>
+            <input placeholder="Your email" id="loginEmail">
+            <input type="password" placeholder="Your password" id="loginPassword">
+            <button id="loginBtn">Login</button>
+            <b class="gotoSignup">Don't have an account?<b class="gotoSignup" style="color: #0464fc"> Signup</b>
+        </div>
+
+        <div id="signUpForm" class="accountForm">
+            <h1>Signup</h1>
+            <input placeholder="Your first name" id="firstNameText">
+            <input placeholder="Your last name" id="lastNameText">
+            <input placeholder="Your phone number" id="numberText">
+            <input placeholder="Your email" id="emailText">
+            <input placeholder="Your address" id="addressText">
+            <input type="password" placeholder="Your password" id="passwordText">
+            <h3 id="addPicture">Add picture</h3>
+            <button id="signupBtn">Signup</button>
+            <b class="gotoSignin">Already have an account?<b class="gotoSignin" style="color: #0464fc"> Signin</b>
+        </div>
+    </body>
+
+
+    <form id="signupFrom" enctype="multipart/form-data" style="display: none">
+        <input name="userFirstName" id="userFirstName">
+        <input name="userLastName" id="userLastName">
+        <input name="userEmail" id="userEmail">
+        <input name="userNumber" id="userNumber">
+        <input name="userAddress" id="userAddress">
+        <input name="userPassword" id="userPassword">
+        <input name="userMessage" type="hidden">
+        <input name="file" id="userPicture" type="file">
+        <button id="signupFromSubmit"></button>
+    </form>
+
+
+    <form id="signing" style="display: none">
+        <button id="signingSubmit"></button>
+    </form>
+
+    <script src="/scripts/accountScript.js"></script>
+</html>

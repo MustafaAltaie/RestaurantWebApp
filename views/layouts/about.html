@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About us</title>
+    </head>
+
+    <body>
+        <div id="footer">
+            <div onclick="window.location.href = '/'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href='/favorite'">
+                <img src="/icons/heartIcon.png">
+                <p>Favorite</p>
+            </div>
+            <div onclick="window.location.href = '/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+            <div onclick="window.location.href = '/account'">
+                <img src="/icons/accountIcon.png">
+                <p>Account</p>
+            </div>
+        </div>
+
+        <img src="/images/about.jpg">
+        <div class="aboutUs">
+            <h1>About us</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At perferendis molestias aspernatur placeat illum numquam, totam dolorum saepe quos, enim ducimus voluptas ea veniam blanditiis laboriosam accusamus sit quis unde!</p>
+        </div>
+    </body>
+
+    <style>
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .aboutUs{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</html>

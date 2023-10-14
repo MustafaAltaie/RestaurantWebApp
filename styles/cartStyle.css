@@ -1,0 +1,214 @@
+.center{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#itemDemo{
+    z-index: 300;
+    position: fixed;
+    width: 50%;
+    padding: 40px 20px;
+    background: rgb(162, 179, 115);
+    border: solid 1px rgb(211, 227, 167);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    align-items: center;
+    display: none;
+}
+#itemDemoImageWrapper, #itemDemoInfoWrapper{
+    width: 50%;
+    text-align: center;
+}
+#itemDemoImage{
+    width: 100%;
+    border-radius: 20px;
+}
+#itemDemo > div > p{
+    margin: 20px 0;
+    padding: 0 50px;
+}
+#itemDemo > div > button{
+    margin: 0 5px;
+    padding: 20px 30px;
+    background: #111;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+#redCircle{
+    z-index: 300;
+    position: fixed;
+    top: 38px;
+    right: 24px;
+    color: #fff;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+#fadedImageWrapper{
+    z-index: 170;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: none;
+    pointer-events: none;
+}
+#fadedImage{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+#cartItemContainer{
+    z-index: 150;
+    position: fixed;
+    top: 50px;
+    right: 0;
+    width: 50%;
+    min-height: 50px;
+    max-height: 500px;
+    overflow-y: scroll;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #ddd;
+    border: solid 1px #999;
+}
+#cartItemContainer::-webkit-scrollbar{
+    display: none;
+}
+.itemCartMainWrapper{
+    position: relative;
+    width: 100%;
+    min-height: 130px;
+    border-radius: 20px;
+    border: solid 1px #999;
+    border-left: none;
+    overflow: hidden;
+    transition: 0.5s;
+    left: 0;
+}
+.itemCartMainWrapper img{
+    height: 100%;
+    width: 25%;
+    object-fit: cover;
+}
+.itemCartMainWrapper > div{
+    z-index: 160;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+.itemCartInfoDescription{
+    background: #0464fc;
+    overflow-y: scroll;
+}
+.itemCartInfoDescription::-webkit-scrollbar{
+    display: none;
+}
+.itemCartInfoDescription > p{
+    text-align: center;
+    padding: 20px 20px 20px 40px;
+    color: #fff;
+    width: 300px;
+    height: 100%;
+}
+.itemCartInfo{
+    background: #ddd;
+    align-items: center;
+    transition: 0.2s;
+    left: 0;
+}
+.itemCartInfoMark, .itemCartIncDecWrapper > p{
+    font-size: 30px;
+    text-align: center;
+    min-width: 30px;
+    min-height: 30px;
+    background: #0464fc;
+    color: #fff;
+    border-radius: 50%;
+    border: solid 1px #fff;
+    cursor: pointer;
+}
+.itemCartIncDecWrapper > p{
+    font-size: 22px;
+    margin: 5px 0;
+}
+.itemCartInfo > p{
+    font-size: 20px;
+}
+.itemCartDelete{
+    font-size: 30px;
+    height: 90%;
+    width: 20px;
+    padding-top: 10%;
+    cursor: pointer;
+    text-align: center;
+    color: #0464fc;
+    margin-right: 20px;
+}
+#completeOrder{
+    z-index: 200;
+    position: fixed;
+    top: 10px;
+    left: 48%;
+    padding: 15px;
+    border: solid 1px #999;
+    font-weight: normal;
+    background: #0464fc;
+}
+
+
+@media only screen and (max-width: 1024px){
+    body #itemDemo{
+        width: 85%;
+        flex-direction: column;
+        gap: 50px;
+        padding: 2%;
+    }
+    body p{
+        font-size: 30px;
+    }
+    body #itemDemo > div{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    body h2, body b{
+        font-size: 30px;
+    }
+    body #itemDemo > div > button{
+        width: 100%;
+        font-size: 30px;
+        border-radius: 20px;
+        margin-top: 20px;
+        padding: 40px 0;
+    }
+    body #redCircle{
+        top: 55px;
+        right: 42px;
+        font-size: 40px;
+    }
+
+    body #cartItemContainer{
+        width: 80%;
+    }
+
+    body .itemCartIncDecWrapper{
+        touch-action: manipulation;
+    }
+}

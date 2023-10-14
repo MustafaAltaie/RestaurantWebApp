@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact us</title>
+    </head>
+    <body>
+
+        <div id="footer">
+            <div onclick="window.location.href = '/'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href = '/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+            <div onclick="window.location.href='/favorite'">
+                <img src="/icons/heartIcon.png">
+                <p>Favorite</p>
+            </div>
+        </div>
+
+
+        <div id="contactWrapper">
+            <h1>Contact Us</h1>
+            <p id="thanks">Thanks mustafa we received your message</p>
+            <input id="nameText" placeholder="Your name">
+            <input id="emailText" placeholder="Your email address">
+            <textarea id="messageText" placeholder="Your message"></textarea>
+            <button id="sendMessage">Send message</button>
+        </div>
+
+        <form id="sendMessageForm" style="display: none">
+            <button id="sendMessageSubmit"></button>
+        </form>
+    </body>
+
+    <style>
+        body{
+            background: #0464fc;
+        }
+        #contactWrapper{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 30px;
+            width: 30%;
+        }
+        input, textarea, button{
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+            border: solid 1px #999;
+        }
+        textarea, #thanks{
+            position: absolute;
+            left: 50%;
+            top: 210px;
+            transform: translateX(-50%);
+            resize: none;
+            height: 200px;
+            width: 87%;
+            transition: 1s;
+        }
+        button{
+            cursor: pointer;
+            margin-top: 215px;
+            background: #0464fc;
+            color: #fff;
+        }
+        h1{
+            font-weight: normal;
+            color: #0464fc;
+        }
+
+        #thanks{
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+
+    <script>
+        document.getElementById('sendMessage').onclick = function(){
+            if(nameText.value != "" && emailText.value != "" && messageText.value != ""){
+                thanks.innerHTML = 'Thanks <a style="color: #0464fc">' + nameText.value + '</a> for contacting us 🙂'
+                contactWrapper.style.pointerEvents = 'none';
+                sendMessageSubmit.click();
+            }
+        }
+
+        if(localStorage.mustafaAltaieRestaurantMyEmail != undefined
+        && localStorage.mustafaAltaieRestaurantMyEmail != ''
+        && localStorage.mustafaAltaieRestaurantMyPassword != ''
+        && localStorage.mustafaAltaieRestaurantMyPassword != undefined){
+            nameText.value = localStorage.mustafaAltaieRestaurantMyFirstName + ' ' + localStorage.mustafaAltaieRestaurantMyLastName;
+            emailText.value = localStorage.mustafaAltaieRestaurantMyEmail;
+        }
+
+        $(document).ready(function(){
+            $("#sendMessageForm").on("submit", function(evt){
+                var date = new Date().toLocaleString();
+                evt.preventDefault();
+                $.ajax({
+                    url: "/newMessage",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        name: nameText.value,
+                        email: emailText.value,
+                        message: messageText.value,
+                        date: new Date().toLocaleString()
+                    }),
+                    success: function(){
+                        messageText.style.transform = 'perspective(692px) rotateX(80deg) rotateZ(35deg)';
+                        setTimeout(function(){
+                            messageText.style.transform = 'perspective(692px) rotateX(80deg) rotateZ(200deg)';
+                            messageText.style.left = -messageText.offsetWidth*3 + 'px';
+                            messageText.style.top = 0;
+                        }, 1000);
+                    }
+                });
+            });
+        });
+    </script>
+</html>

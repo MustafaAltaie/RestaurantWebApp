@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Favorite List</title>
+        <link rel="stylesheet" href="/styles/favoriteStyle.css">
+        <link rel="stylesheet" href="/styles/cartStyle.css">
+    </head>
+    <body>
+
+        {{#each itemList}}
+        <input type="hidden" value="{{this._id}}" class="item_idDB">
+        <input type="hidden" value="{{this.catigory}}" class="catigoryDB">
+        <input type="hidden" value="{{this.title}}" class="titleDB">
+        <input type="hidden" value="{{this.price}}" class="priceDB">
+        <input type="hidden" value="{{this.description}}" class="descriptionDB">
+        {{/each}}
+
+        {{#each currencyTyp}}
+        <input id="currencyIdDB" type="hidden" value="{{this._id}}">
+        <input id="currencyDB" type="hidden" value="{{this.currencyTyp}}">
+        {{/each}}
+
+        <img src="/beehave.png" id="favoriteBackground">
+
+        <div id="cartWrapper">
+            <img src="/icons/cart.png">
+        </div>
+
+        <div id="footer">
+            <div onclick="window.location.href = '/'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href = '/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+            <div onclick="window.location.href='/account'">
+                <img src="/icons/accountIcon.png">
+                <p>Account</p>
+            </div>
+        </div>
+
+        <div id="favoriteContainer"></div>
+
+        <div id="itemDemo" class="center">
+            <div id="itemDemoImageWrapper">
+                <img src="/images/dec44.jpg" id="itemDemoImage">
+            </div>
+            <div id="itemDemoInfoWrapper">
+                <h2 id="itemDemoTitle">Pizza chicken</h2>
+                <p id="itemDemoDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem veniam adipisci corrupti nulla minima, sit assumenda eveniet velit mollitia ratione ipsum alias? Harum, illum sequi perspiciatis itaque veniam quae quam.</p>
+                <b id="itemDemoPrice">99 kr</b>
+                <button id="addToCart">Add to cart</button>
+            </div>
+        </div>
+
+
+        <div id="redCircle">
+            <h3 id="redCircleNumber">0</h3>
+        </div>
+
+        <div id="cartItemContainer">
+            <button id="completeOrder" onclick="window.location.href='/completeOrder'">Complete order</button>
+        </div>
+    </body>
+
+    <script src="/scripts/favoriteScript.js"></script>
+    <script src="/scripts/cartScript.js"></script>
+</html>

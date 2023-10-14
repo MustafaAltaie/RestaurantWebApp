@@ -1,0 +1,160 @@
+.setting3Buttons{
+    z-index: 80;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    display: flex;
+    gap: 4px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+.setting3Buttons:hover{
+    background: rgba(255, 255, 255, 0.5);
+}
+.setting3Buttons:hover > div{
+    background: #07d;
+}
+.setting3Buttons > div{
+    min-width: 4px;
+    min-height: 4px;
+    border-radius: 50%;
+    background: #000;
+    pointer-events: none;
+}
+
+
+.settingMenu{
+    z-index: 300;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    display: none;
+    flex-direction: column;
+}
+.settingMenu > p{
+    padding: 20px;
+    background: #ddd;
+    cursor: pointer;
+    border: solid 1px #999;
+    margin-top: -1px;
+    font-size: 16px;
+}
+.settingMenu > input, .settingMenu > textarea{
+    padding: 20px;
+    text-align: center;
+    display: none;
+    border: solid 1px #999;
+    min-width: 200px;
+    font-size: 16px;
+}
+.settingMenu > p:hover{
+    background: #eee;
+}
+#itemSettingsSaveChanges{
+    background: rgb(109, 177, 82);
+    display: none;
+}
+#itemSettingsSaveChanges:hover{
+    background: rgb(132, 192, 108);
+}
+.removeButton{
+    color: #c20;
+}
+
+
+#addNewItemForm{
+    z-index: 200;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: none;
+    flex-direction: column;
+}
+#addNewItemForm > input, #addNewItemForm > p{
+    padding: 20px;
+    border: solid 1px #999;
+    margin-top: -1px;
+    font-size: 16px;
+}
+#addNewItemForm > p{
+    text-align: center;
+    background: #ccc;
+    cursor: pointer;
+}
+#addNewItemForm > p:hover{
+    background: #ddd;
+}
+
+
+#sliderImageView{
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background: #fff;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+#sliderImageView > img{
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    pointer-events: all;
+    border-radius: 10px;
+}
+
+#currency{
+    z-index: 300;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100px;
+    text-align: center;
+    border: solid 1px #999;
+}
+
+@media only screen and (max-width: 1024px){
+    body .setting3Buttons{
+        gap: 7px;
+        left: 10px;
+        top: 20px;
+        padding: 15px;
+    }
+    body .setting3Buttons > div{
+        min-width: 6px;
+        min-height: 6px;
+    }
+    body .settingMenu > p, body .settingMenu > input, body .settingMenu > textarea, body #addNewItemForm > p, body #addNewItemForm > input{
+        padding: 40px 60px;
+        font-size: 30px;
+    }
+    body .settingMenu > p, body #addNewItemForm > p{
+        white-space: nowrap;
+    }
+    body #sliderImageView{
+        width: 65%;
+    }
+    body #sliderImageView > img{
+        width: 300px;
+        height: 300px;
+    }
+    body #currency{
+        font-size: 30px;
+        width: 200px;
+        bottom: 50px;
+    }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Orders</title>
+    </head>
+    <body>
+        {{#each orderList}}
+        <input type="hidden" value="{{this._id}}" class="idDB">
+        <input type="hidden" value="{{this.order}}" class="orderDB">
+        <input type="hidden" value="{{this.clientName}}" class="clientNameDB">
+        <input type="hidden" value="{{this.clientNumber}}" class="clientNumberDB">
+        <input type="hidden" value="{{this.clientAddress}}" class="clientAddressDB">
+        <input type="hidden" value="{{this.orderDate}}" class="orderDateDB">
+        <input type="hidden" value="{{this.message}}" class="messageDB">
+        {{/each}}
+
+        <div id="ordersMainWrapper"></div>
+
+        <form id="deleteOrder">
+            <button id="deleteOrderSubmit"></button>
+        </form>
+
+        <div id="footer">
+            <div onclick="window.location.href = '/manage'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href = '/messages'">
+                <img src="/icons/message.png">
+                <p>Messages</p>
+            </div>
+            <div onclick="window.location.href = '/manage/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+            <div onclick="window.location.href = '/allUsers'">
+                <img src="/icons/allUsers.png">
+                <p>All users</p>
+            </div>
+        </div>
+    </body>
+
+    <style>
+        body{
+            padding-bottom: 80px;
+            background: #06f;
+        }
+        .deleteOrder, .orderMessage{
+            color: #f10;
+            font-weight: bold;
+        }
+        h2, a{
+            color: #06f;
+            user-select: text;
+        }
+        p, a{
+            margin: 5px 0;
+            user-select: text;
+        }
+        img{
+            height: 70px;
+            border-radius: 20px;
+        }
+        #ordersMainWrapper, .orderWrapper, .orderMiddleWrapper, .order{
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        #ordersMainWrapper, .orderMiddleWrapper{
+            flex-wrap: wrap;
+        }
+        .orderWrapper{
+            position: relative;
+            flex-direction: column;
+            background: #eee;
+            border: solid 1px #06f;
+        }
+        .deleteOrder{
+            position: absolute;
+            right: 0;
+            padding: 10px 30px;
+            cursor: pointer;
+        }
+        .order{
+            justify-content: space-between;
+            align-items: center;
+            background: #ccc;
+        }
+        @media only screen and (max-width: 1024px){
+            body h2, body p, body a{
+                font-size: 30px;
+            }
+            body #ordersMainWrapper, body .orderMiddleWrapper{
+                flex-direction: column;
+                padding: 0px;
+            }
+        }
+    </style>
+
+    <script>
+
+
+        for(i = 0; i < document.querySelectorAll('.idDB').length; i++){
+            let newOrder = {
+                id: document.querySelectorAll('.idDB')[i].value,
+                order: document.querySelectorAll('.orderDB')[i].value,
+                name: document.querySelectorAll('.clientNameDB')[i].value,
+                number: document.querySelectorAll('.clientNumberDB')[i].value,
+                address: document.querySelectorAll('.clientAddressDB')[i].value,
+                date: document.querySelectorAll('.orderDateDB')[i].value,
+                message: document.querySelectorAll('.messageDB')[i].value
+            }
+            createOrder(newOrder);
+        }
+
+
+        function createOrder(order){
+            let orderWrapper = document.createElement('div');
+            orderWrapper.id = order.id + 'Wrapper';
+            orderWrapper.className = 'orderWrapper';
+
+                let deleteOrder = document.createElement('h2');
+                deleteOrder.id = order.id;
+                deleteOrder.className = 'deleteOrder';
+                deleteOrder.innerHTML = 'X';
+
+
+
+                let orderHeader = document.createElement('div');
+                orderHeader.className = 'orderHeader';
+
+                    let clientName = document.createElement('h2');
+                    clientName.innerHTML = order.name;
+
+                    let clientNumber = document.createElement('p');
+                    clientNumber.innerHTML = 'Number: <a>' + order.number + '</a>';
+
+                    let clientAddress = document.createElement('p');
+                    clientAddress.innerHTML = 'Address: <a>' + order.address + '</a>';
+
+                    let orderDate = document.createElement('p');
+                    orderDate.innerHTML = '<a>' + order.date + '</a>';
+
+                orderHeader.appendChild(clientName);
+                orderHeader.appendChild(clientNumber);
+                orderHeader.appendChild(clientAddress);
+                orderHeader.appendChild(orderDate);
+
+            orderWrapper.appendChild(deleteOrder);
+            orderWrapper.appendChild(orderHeader);
+
+
+            let orderMiddleWrapper = document.createElement('div');
+            orderMiddleWrapper.className = 'orderMiddleWrapper';
+
+            let totalPric = 0;
+
+            for(j = 0; j < document.querySelectorAll('.orderDB')[i].value.split('//endItem//').length-1; j++){
+                titl = document.querySelectorAll('.orderDB')[i].value.split('//endItem//')[j].split('//and//')[0],
+                pric = document.querySelectorAll('.orderDB')[i].value.split('//endItem//')[j].split('//and//')[1],
+                amont = document.querySelectorAll('.orderDB')[i].value.split('//endItem//')[j].split('//and//')[3]
+
+                let orderMiddle = document.createElement('div');
+                orderMiddle.className = 'orderMiddle';
+
+                    let order = document.createElement('div');
+                    order.className = 'order';
+
+                        let img = document.createElement('img');
+                        img.src = '/food items/' + titl + '.jpg';
+
+                        let title = document.createElement('p');
+                        title.innerHTML = titl;
+
+                        let amount = document.createElement('p');
+                        amount.innerHTML = amont;
+
+                        let itemTotalPrice = document.createElement('p');
+                        itemTotalPrice.innerHTML = pric * amont + ' ' + localStorage.mustafaAltaieRestaurantusedCurrency;
+
+                    order.appendChild(img);
+                    order.appendChild(title);
+                    order.appendChild(amount);
+                    order.appendChild(itemTotalPrice);
+
+                orderMiddle.appendChild(order);
+
+                orderMiddleWrapper.appendChild(orderMiddle);
+
+                orderWrapper.appendChild(orderMiddleWrapper);
+
+                totalPric += pric * amont;
+            }
+
+
+
+                let totalPrice = document.createElement('a');
+                totalPrice.className = 'totalPrice';
+                totalPrice.innerHTML = 'Total price: ' + totalPric + ' ' + localStorage.mustafaAltaieRestaurantusedCurrency;
+
+                let orderMessage = document.createElement('p');
+                orderMessage.className = 'orderMessage';
+                orderMessage.innerHTML = order.message;
+
+            if(order.message != '')
+            orderWrapper.appendChild(orderMessage);
+            orderWrapper.appendChild(totalPrice);
+
+            ordersMainWrapper.appendChild(orderWrapper);
+        }
+
+
+        let idToRemove = '';
+
+        window.addEventListener('click', function(evt){
+            if(evt.target.className == 'deleteOrder'){
+                idToRemove = evt.target.id;
+                document.getElementById(evt.target.id).style.display = 'none';
+                deleteOrderSubmit.click();
+            }
+        });
+
+
+        $(document).ready(function(){
+            $("#deleteOrder").on("submit", function(evt){
+                var date = new Date().toLocaleString();
+                evt.preventDefault();
+                $.ajax({
+                    url: "/deleteOrder",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        _id: idToRemove
+                    }),
+                    success: function(){
+                        document.getElementById(idToRemove + 'Wrapper').remove();
+                    }
+                });
+            });
+        });
+    </script>
+</html>

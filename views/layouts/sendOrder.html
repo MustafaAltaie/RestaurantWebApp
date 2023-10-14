@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Complete order</title>
+    </head>
+
+    <body>
+        <div id="mainWrapper">
+            <div id="infoContainer">
+                <input id="clientName" placeholder="Full name">
+                <input id="clientNumber" placeholder="Phone number">
+                <input id="clientAddress" placeholder="Address">
+            </div>
+            <div id="pamentContainer">
+                <button id="backToItems" onclick="window.location.href = '/foods'">Food list</button>
+                <div id="paymentButtons">
+                    <button id="swish">Swish</button>
+                    <button id="card">Debit card</button>
+                    <button id="cash">Others</button>
+                </div>
+
+                <div id="paymentDetailMainContainerBig">
+                    <div id="paymentDetailMainContainerSmall">
+                        <div id="swishDetails">
+                            <div style="width: 40%; align-items: center;">
+                                <h2>Payment via Swish</h2>
+                                <img src="/icons/swish.png">
+                            </div>
+                            <div style="width: 60%">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad iusto natus, est praesentium repudiandae dolor iure autem assumenda maiores ducimus vitae itaque voluptates ut excepturi quod adipisci nesciunt architecto accusantium!</p>
+                                <input id="swishNumber" type="number" placeholder="Swish number">
+                                <button>OK</button>
+                            </div>
+                        </div>
+                        <div id="cardDetails">
+                            <div style="width: 40%; align-items: center;">
+                                <h2>Payment via Card</h2>
+                                <img src="/icons/debitCard.png">
+                            </div>
+                            <div id="cardHolder">
+                                <input id="cardHolderName" placeholder="Full name">
+                                <input placeholder="Card number">
+                                <div>
+                                    <input type="number" placeholder="MM">
+                                    <input type="number" placeholder="YY">
+                                    <input type="number" placeholder="CVC">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cashDetails">
+                            <h2>Other ways of payment</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est dolore rerum repudiandae, at veritatis qui, fugiat sed facere ullam alias voluptatum pariatur error repellat deleniti. Delectus error perspiciatis eum illo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footerContainer">
+                <input type="checkbox" id="agreeForTerms">
+                <label for="agreeForTerms">Agree to </label><a href="/termsAndConditions">terms and conditions</a>
+                <button id="sendOrder">Send order</button>
+                <a id="hintButton">I have a comment</a>
+            </div>
+        </div>
+        <form id="sendOrderForm" style="display: none">
+            <button id="sendOrderSubmit"></button>
+        </form>
+
+        <textarea id="hintText" placeholder="Write something"></textarea>
+    </body>
+
+    <style>
+        body{
+            background: #06f;
+        }
+        button{
+            font-size: 16px;
+            background: #0464fc;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        button:hover{
+            background: #1c73ff;
+        }
+        #sendOrder{
+            background: #777;
+        }
+        a{
+            color: #0464fc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        label{
+            cursor: pointer;
+        }
+        input{
+            font-size: 16px;
+            padding: 10px;
+            border: solid 1px #555;
+            border-radius: 10px;
+        }
+        img{
+            pointer-events: none;
+            width: 100px;
+        }
+        #backToItems{
+            position: absolute;
+            top: 7px;
+            left: 10px;
+            border-radius: 100px 10px 10px 10px;
+            padding: 10px 10px 10px 20px;
+        }
+        #mainWrapper{
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            width: 950px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 50px;
+            padding: 20px 0;
+        }
+        #mainWrapper > div{
+            display: flex;
+            padding: 20px 50px;
+        }
+        #infoContainer{
+            justify-content: center;
+            gap: 10px;
+        }
+        #pamentContainer{
+            flex-direction: column;
+        }
+        #pamentContainer > div{
+            width: 100%;
+            display: flex;
+        }
+        #paymentButtons{
+            justify-content: center;
+            gap: 10px;
+            border-top: solid 1px #777;
+            padding: 20px 0;
+        }
+        #paymentButtons > button{
+            width: 30%;
+        }
+        #paymentDetailMainContainerBig{
+            overflow-x: scroll;
+            border-bottom: solid 1px #777;
+        }
+        #paymentDetailMainContainerBig::-webkit-scrollbar{
+            display: none;
+        }
+        #paymentDetailMainContainerSmall{
+            position: relative;
+            display: flex;
+            gap: 50px;
+            transition: 0.5s;
+        }
+        #paymentDetailMainContainerSmall > div{
+            width: 800px;
+            padding: 20px;
+            display: flex;
+        }
+        #swishDetails > div, #cardDetails > div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #cardHolder{
+            width: 60%;
+            align-items: center;
+        }
+        #cardHolder > input{
+            width: 100%;
+        }
+        #cardHolder > div{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        #cardHolder > div > input{
+            width: 30%;
+        }
+
+        #cashDetails{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        #cashDetails > h2{
+            color: #0464fc;
+        }
+        #cashDetails > p{
+            padding: 0 100px;
+        }
+
+        #footerContainer{
+            align-items: center;
+            gap: 5px;
+        }
+        #footerContainer > button{
+            width: 20%;
+            margin-left: 20px;
+            pointer-events: none;
+        }
+        #hintButton{
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        #hintText{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 400px;
+            min-height: 100px;
+            max-width: 900px;
+            max-height: 200px;
+            transform: translate(-50%, -50%);
+            background: #555;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 20px;
+            display: none;
+        }
+        #hintText::-webkit-input-placeholder{
+            color: #aaa;
+        }
+
+        @media only screen and (max-width: 1024px){
+            body #mainWrapper > div{
+                padding: 50px 50px 20px 50px;
+            }
+            body #infoContainer{
+                flex-direction: column;
+                margin-top: 100px;
+            }
+            body #paymentButtons{
+                padding: 50px 0 0 0;
+                flex-direction: column;
+            }
+            body #paymentButtons > button{
+                width: 100%;
+            }
+            body p, body button, body input, body a, body label{
+                font-size: 35px;
+            }
+            body button, body input, body #backToItems{
+                padding: 40px 10px;
+                border-radius: 20px;
+                margin: 10px 0;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('click', function(evt){
+            if(evt.target.parentNode.id == 'paymentButtons')
+            paymentDetailMainContainerSmall.style.left = -document.getElementById(evt.target.id + 'Details').offsetLeft + 'px';
+
+            if(evt.target.id == 'sendOrder'){
+                if(clientName.value != ''
+                && clientNumber.value != ''
+                && clientAddress.value != ''){
+                    sendOrderSubmit.click();
+                    sendOrder.style.pointerEvents = 'none';
+                    localStorage.mustafaAltaieRestaurantClientName = clientName.value;
+                }
+                else
+                alert('Fill all your information');
+            }
+
+            if(evt.target.id == 'agreeForTerms'){
+                if(agreeForTerms.checked == true){
+                    sendOrder.style.pointerEvents = 'unset';
+                    sendOrder.style.background = '#0464fc';
+                }
+                else{
+                    sendOrder.style.pointerEvents = 'none';
+                    sendOrder.style.background = '#777';
+                }
+            }
+        });
+
+        card.style.transform = 'translateY(-15px)';
+        swish.style.transform = 'translateY(-15px)';
+
+        setTimeout(function(){
+            cash.click();
+            setTimeout(function(){
+                card.click();
+                card.style.transform = 'translateY(0)';
+                setTimeout(function(){
+                    swish.click();
+                    swish.style.transform = 'translateY(0)';
+                }, 400);
+            }, 400);
+        }, 0);
+
+        if(localStorage.mustafaAltaieRestaurantMyFirstName != ""
+        && localStorage.mustafaAltaieRestaurantMyFirstName != undefined){
+            clientName.value = localStorage.mustafaAltaieRestaurantMyFirstName + ' ' + localStorage.mustafaAltaieRestaurantMyLastName;
+            clientNumber.value = localStorage.mustafaAltaieRestaurantMyNumber;
+            clientAddress.value = localStorage.mustafaAltaieRestaurantMyAddress;
+            swishNumber.value = clientNumber.value;
+            cardHolderName.value = clientName.value;
+        }
+
+        $(document).ready(function(){
+            $("#sendOrderForm").on("submit", function(evt){
+                var date = new Date().toLocaleString();
+                evt.preventDefault();
+                $.ajax({
+                    url: "/sendOrder",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        order: localStorage.mustafaAltaieRestaurantCart,
+                        clientName: clientName.value,
+                        clientNumber: clientNumber.value,
+                        clientAddress: clientAddress.value,
+                        orderDate: date,
+                        message: hintText.value
+                    }),
+                    success: function(){
+                        window.location.href = '/orderReveived';
+                    }
+                });
+            });
+        });
+
+        document.addEventListener('mousedown', function(evt){
+            if(evt.target.id == 'hintButton'
+            || evt.target.id == 'hintText')
+            hintText.style.display = 'block';
+            else
+            hintText.style.display = 'none';
+        });
+    </script>
+</html>

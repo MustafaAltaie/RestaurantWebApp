@@ -1,0 +1,201 @@
+body{
+    background: #111;
+}
+img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    cursor: pointer;
+}
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.navColor{
+    height: 2px;
+    background-image: url('/navColor.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+#homeWrapper{
+    color: #ddd;
+}
+#homeWrapper p{
+    font-size: 16px;
+}
+#homeWrapper button{
+    border-radius: 3px;
+    border: solid 1px rgb(255, 233, 159);
+    background: rgba(0, 0, 0, 0);
+    color: rgb(255, 233, 159);
+    padding: 5px 20px;
+    cursor: pointer;
+    margin: 10px 0;
+    font-size: 16px;
+}
+#mainNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+#mainNav > li{
+    position: relative;
+    padding: 10px 30px;
+    list-style-type: none;
+    cursor: pointer;
+}
+#mainNav > li:hover{
+    color:rgb(223, 196, 107);
+}
+#mainNav > li:hover:after{
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    border-radius: 5px;
+    background: rgb(223, 196, 107);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#mainNav img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+#logo{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    padding: 5px;
+    pointer-events: all;
+}
+
+#mainBackground{
+    position: relative;
+    height: 80%;
+}
+#mainBackground > img{
+    opacity: 0.7;
+}
+#mainBackground > div > h1{
+    font-size: 80px;
+    font-weight: normal;
+    font-family: 'Passions Conflict', cursive;
+}
+
+#home2{
+    display: flex;
+    height: 50%;
+    padding: 70px 300px;
+    align-items: center;
+    gap: 70px;
+}
+#home2Sec1, #home2Sec2{
+    width: 50%;
+}
+#home2Sec1 > img{
+    height: 90%;
+}
+
+#home3{
+    position: relative;
+    height: 70%;
+    background-image: url('/images/fixedImage.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#home4{
+    position: relative;
+    height: 40%;
+}
+
+#home5{
+    display: flex;
+    height: 70%;
+}
+#home5 > div{
+    position: relative;
+    width: 50%;
+}
+
+#home5Wrapper2{
+    display: flex;
+    flex-wrap: wrap;
+}
+#home5Wrapper2 > div{
+    position: relative;
+    width: 50%;
+    height: 50%;
+    cursor: pointer;
+}
+
+#home6{
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    padding: 100px;
+}
+#footer1{
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+}
+#footer1 > ul{
+    list-style: none;
+}
+#footer1 > ul > li{
+    color: #aaa;
+}
+
+#footer2{
+    position: relative;
+}
+#footer2 > div > div{
+    display: flex;
+    gap: 50px;
+    padding: 20px 0;
+    justify-content: center;
+}
+#footer2 > div > div > img{
+    width: 30px;
+    height: 30px;
+    pointer-events: all;
+}
+
+#accountOptionList{
+    z-index: 100;
+    position: absolute;
+    display: none;
+}
+#accountOptionList > p{
+    background: #ddd;
+    padding: 10px;
+    cursor: pointer;
+    border: solid 1px #111;
+    margin-top: -1px;
+}
+#accountOptionList > p:hover{
+    background: #eee;
+}
+
+@media only screen and (max-width: 1024px){
+    body #home2, body #home5{
+        flex-direction: column;
+        height: unset;
+    }
+    body #home2 > div, body #home5 > div{
+        width: 100%;
+    }
+}

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Messages</title>
+    </head>
+
+    <body>
+        {{#each messageList}}
+        <input type="hidden" value="{{this._id}}" class="idDB">
+        <input type="hidden" value="{{this.name}}" class="senderName">
+        <input type="hidden" value="{{this.email}}" class="senderEmail">
+        <input type="hidden" value="{{this.message}}" class="senderMessage">
+        <input type="hidden" value="{{this.date}}" class="messageDate">
+        {{/each}}
+
+        <div id="footer">
+            <div onclick="window.location.href = '/manage'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href='/orders'">
+                <img src="/icons/orders.png">
+                <p>Orders</p>
+            </div>
+            <div onclick="window.location.href = '/manage/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+            <div onclick="window.location.href = '/allUsers'">
+                <img src="/icons/allUsers.png">
+                <p>All users</p>
+            </div>
+        </div>
+
+
+        <div id="mainWrapper"></div>
+
+        <div id="settingDiv">
+            <button id="copyEmail">Copy email</button>
+            <button id="replyBtn">Reply</button>
+        </div>
+
+        <form id="deleteMessageForm" style="display: none">
+            <button id="deleteMessageSubmit"></button>
+        </form>
+
+        <form id="replyMessage">
+            <textarea id="replyMessageText" placeholder="Write a reply"></textarea>
+            <button id="replyMessageSubmit">Reply</button>
+        </form>
+    </body>
+
+    <style>
+        body{
+            background: #bbb;
+        }
+        a{
+            font-size: 14px;
+        }
+        #mainWrapper p{
+            color: rgb(0, 76, 191);
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        #mainWrapper img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .infoWrapper, .imageWrapper{
+            pointer-events: none;
+        }
+        .infoWrapper{
+            width: 60%;
+            overflow-x: scroll;
+        }
+        .infoWrapper::-webkit-scrollbar{
+            display: none;
+        }
+        .messageWrapper, #mainWrapper, .message{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            border-radius: 20px;
+            padding: 15px 10px;
+            gap: 10px;
+        }
+        #mainWrapper{
+            justify-content: center;
+            padding: 15px 10px 85px 10px;
+        }
+        .messageWrapper{
+            position: relative;
+            justify-content: center;
+            flex-wrap: nowrap;
+            background: #d5d5d5;
+            cursor: pointer;
+            transition: transform 0.8s;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            border-top: rgba(255, 255, 255, 0.7) solid 1px;
+            border-left: rgba(255, 255, 255, 0.4) solid 1px;
+        }
+        .messageWrapper:hover{
+            background: #dfdfdf;
+        }
+        .message{
+            z-index: 100;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            border: solid 1px #999;
+            resize: none;
+            pointer-events: none;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .delete{
+            border-radius: 50%;
+            min-width: 27px;
+            min-height: 24px;
+            padding-top: 4px;
+            text-align: center;
+        }
+        .delete:hover{
+            color: #fff;
+            background: #f10;
+        }
+        .settings{
+            padding: 5px 15px;
+            border-radius: 50%;
+        }
+        .settings:hover{
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .settings > div{
+            min-width: 3px;
+            min-height: 3px;
+            border-radius: 50%;
+            background: #000;
+            margin: 4px 0;
+            pointer-events: none;
+        }
+
+        #settingDiv{
+            position: absolute;
+            display: none;
+            flex-direction: column;
+            gap: 1px;
+        }
+        #settingDiv > button{
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #06f;
+            color: #fff;
+            border-radius: 5px;
+        }
+        #settingDiv > button:hover{
+            background: rgb(22, 115, 255);
+        }
+
+        #replyMessage{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: none;
+            transition: 0.2s;
+        }
+        #replyMessageText{
+            pointer-events: unset;
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 20px;
+            resize: none;
+        }
+        #replyMessageSubmit{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            padding: 10px;
+            cursor: pointer;
+            background: #06f;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        #footer{
+            background: #ddd;
+        }
+        @media only screen and (max-width: 1024px){
+            body p{
+                font-size: 30px;
+            }
+            body a{
+                font-size: 20px;
+            }
+            body #mainWrapper{
+                flex-direction: column;
+                padding: 50px 0;
+            }
+            body .messageWrapper{
+                min-width: 80%;
+                padding: 40px 0;
+                gap: 40px;
+            }
+        }
+    </style>
+
+    <script>
+
+        document.addEventListener('mousedown', function(evt){
+            if(evt.target.className == 'messageWrapper'){
+                document.getElementById(evt.target.id + 'Message').style.height = document.getElementById(evt.target.id + 'Message').scrollHeight + 10 + 'px';
+                messageStyle(evt.target.id + 'Message');
+            }
+            else if(evt.target.className == 'message'){
+                messageStyle(evt.target.id);
+            }
+            else
+            messageStyle();
+        });
+
+        let idToRemove = '';
+        let emailToCopy = '';
+        let thisUser = '';
+        let thisId = '';
+
+        document.addEventListener('click', function(evt){
+            if(evt.target.className == 'delete'){
+                idToRemove = evt.target.id;
+                if(confirm('Delete message?') == true)
+                deleteMessageSubmit.click();
+            }
+
+            if(evt.target.className == 'settings'){
+                thisUser = evt.target.wrapperName;
+                thisId = evt.target.idAddress;
+                emailToCopy = evt.target.id;
+                settingDiv.style.display = 'flex';
+                settingDiv.style.top = event.clientY + document.body.scrollTop - settingDiv.offsetHeight/2 + 'px';
+                settingDiv.style.left = event.clientX - settingDiv.offsetWidth * 1.1 + 'px';
+            }
+            else
+            settingDiv.style.display = 'none';
+
+            if(evt.target.id == 'copyEmail'){
+                const el = document.createElement("textarea");
+                el.value = emailToCopy;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand("copy");
+                document.body.removeChild(el);
+                settingDiv.style.display = 'none';
+            }
+
+            if(evt.target.id == 'replyBtn'){
+                replyMessage.style.display = 'block';
+                replyMessage.style.width = document.getElementById(thisUser).offsetWidth + 'px';
+                replyMessage.style.left = document.getElementById(thisUser).offsetLeft + 'px';
+                replyMessage.style.top = document.getElementById(thisUser).offsetTop + document.getElementById(thisUser).offsetHeight + 2 + 'px';
+            }
+            else{
+                if(evt.target.parentNode.id != 'replyMessage')
+                replyMessage.style.display = 'none';
+            }
+        });
+
+        $(document).ready(function(){
+            $("#deleteMessageForm").on("submit", function(evt){
+                var date = new Date().toLocaleString();
+                evt.preventDefault();
+                $.ajax({
+                    url: "/removeMessage",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        _id: idToRemove
+                    }),
+                    success: function(){
+                        document.getElementById('messageWrapper' + idToRemove).style.transform = 'perspective(500px) rotateY(270deg)';
+                        setTimeout(function(){
+                            document.getElementById('messageWrapper' + idToRemove).remove();
+                        }, 800);
+                    }
+                });
+            });
+
+            $("#replyMessage").on("submit", function(evt){
+                evt.preventDefault();
+                $.ajax({
+                    url: "/replyMessage",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        email: emailToCopy,
+                        message: replyMessageText.value
+                    }),
+                    success: function(){
+                        alert('Reply sent!');
+                    }
+                });
+            });
+        });
+
+        function messageStyle(n){
+            for(i = 0; i < document.querySelectorAll('.message').length; i++){
+                document.querySelectorAll('.message')[i].style.opacity = 0;
+                document.querySelectorAll('.message')[i].style.top = 0;
+                document.querySelectorAll('.message')[i].style.pointerEvents = 'none';
+            }
+            if(n){
+                document.getElementById(n).style.opacity = 1;
+                document.getElementById(n).style.top = '70px';
+                document.getElementById(n).style.pointerEvents = 'unset';
+                document.getElementById(n).style.height = 'unset';
+            }
+        }
+
+
+        for(i = 0; i < document.querySelectorAll('.idDB').length; i++){
+            let sender = {
+                id: document.querySelectorAll('.idDB')[i].value,
+                name: document.querySelectorAll('.senderName')[i].value,
+                email: document.querySelectorAll('.senderEmail')[i].value,
+                message: document.querySelectorAll('.senderMessage')[i].value,
+                date: document.querySelectorAll('.messageDate')[i].value
+            }
+
+            let messageWrapper = document.createElement('div');
+            messageWrapper.className = 'messageWrapper';
+            messageWrapper.id = 'messageWrapper' + sender.id;
+
+                let del = document.createElement('h4');
+                del.id = sender.id;
+                del.className = 'delete';
+                del.innerHTML = 'X';
+
+                let imageWrapper = document.createElement('div');
+                imageWrapper.className = 'imageWrapper';
+
+                    let img = document.createElement('img');
+                    img.src = '/user pictures/' + sender.email + '.jpg';
+                    img.src2 = '/icons/account.png"';
+
+                imageWrapper.appendChild(img);
+
+                let infoWrapper = document.createElement('div');
+                infoWrapper.className = 'infoWrapper';
+
+                    let email = document.createElement('p');
+                    email.innerHTML = sender.email;
+
+                    let date1 = document.createElement('a');
+                    date1.innerHTML = sender.date;
+
+                infoWrapper.appendChild(email);
+                infoWrapper.appendChild(date1);
+
+                let message = document.createElement('textarea');
+                message.id = messageWrapper.id + 'Message';
+                message.className = 'message';
+                message.value = sender.message;
+
+                let settings = document.createElement('div');
+                settings.id = email.innerHTML;
+                settings.className = 'settings';
+                settings.wrapperName = messageWrapper.id;
+                settings.idAddress = sender.id;
+                    let div1 = document.createElement('div');
+                    let div2 = document.createElement('div');
+                    let div3 = document.createElement('div');
+                settings.appendChild(div1);
+                settings.appendChild(div2);
+                settings.appendChild(div3);
+
+            messageWrapper.appendChild(del);
+            messageWrapper.appendChild(imageWrapper);
+            messageWrapper.appendChild(infoWrapper);
+            messageWrapper.appendChild(message);
+            messageWrapper.appendChild(settings);
+
+            mainWrapper.appendChild(messageWrapper);
+        }
+    </script>
+</html>

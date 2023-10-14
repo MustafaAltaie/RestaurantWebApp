@@ -1,0 +1,13 @@
+<body>
+    {{#each infoList}}
+    <input type="hidden" value="{{this._id}}" id="userIdDB">
+    <input type="hidden" value="{{this.userFirstName}}" id="userFirstName">
+    <input type="hidden" value="{{this.userLastName}}" id="userLastName">
+    <input type="hidden" value="{{this.userEmail}}" id="userEmail">
+    <input type="hidden" value="{{this.userNumber}}" id="userNumber">
+    <input type="hidden" value="{{this.userAddress}}" id="userAddress">
+    <input type="hidden" value="{{this.userPassword}}" id="userPassword">
+    {{/each}}
+</body>
+
+<script src="/scripts/testScript.js"></script>

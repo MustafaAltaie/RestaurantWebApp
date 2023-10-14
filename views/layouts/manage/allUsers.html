@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ALl users</title>
+    </head>
+
+    <body>
+        {{#each usersList}}
+        <input type="hidden" value="{{this._id}}" class="idDB">
+        <input type="hidden" value="{{this.userFirstName}}" class="userFirstNameDB">
+        <input type="hidden" value="{{this.userLastName}}" class="userLastNameDB">
+        <input type="hidden" value="{{this.userEmail}}" class="userEmailDB">
+        <input type="hidden" value="{{this.userNumber}}" class="userNumberDB">
+        <input type="hidden" value="{{this.userAddress}}" class="userAddressDB">
+        <input type="hidden" value="{{this.userPassword}}" class="userPasswordDB">
+        <input type="hidden" value="{{this.userMessage}}" class="userMessageDB">
+        {{/each}}
+
+        <div id="footer">
+            <div onclick="window.location.href = '/manage'">
+                <img src="/icons/home.png">
+                <p>Home</p>
+            </div>
+            <div onclick="window.location.href = '/messages'">
+                <img src="/icons/message.png">
+                <p>Messages</p>
+            </div>
+            <div onclick="window.location.href = '/orders'">
+                <img src="/icons/orders.png">
+                <p>Orders</p>
+            </div>
+            <div onclick="window.location.href = '/manage/foods'">
+                <img src="/icons/listIcon.png">
+                <p>Food list</p>
+            </div>
+        </div>
+
+        <div id="mainWrapper"></div>
+
+        <form id="updateForm">
+            <input id="id" type="hidden" placeholder="_id">
+            <input id="userFirstName" placeholder="First name">
+            <input id="userLastName" placeholder="Last name">
+            <input id="userEmail" placeholder="Email">
+            <input id="userNumber" placeholder="Mobile">
+            <input id="userAddress" placeholder="Address">
+            <input id="userPassword" placeholder="Password">
+            <button id="updateFormSubmit">Update information</button>
+        </form>
+
+        <form id="deleteUserFrom">
+            <u id="deleteUser">Delete user</u>
+            <u id="sendMessage">Send message</u>
+            <button id="deleteUserFromSubmit" style="display: none"></button>
+        </form>
+
+        <p id="searchButton">Search</p>
+        <p id="sendMessageToAll">Message to all</p>
+
+        <div id="searchWrapper">
+            <input class="search" id="emailSearch" placeholder="Find by email" autocomplete="off">
+            <input class="search" id="addressSearch" placeholder="Find by address" autocomplete="off">
+            <input class="search" id="numberSearch" placeholder="Find by number" autocomplete="off">
+        </div>
+
+        <form id="chatWrapper">
+            <textarea id="chatText" placeholder="Write message"></textarea>
+            <p id="sendChat" style="display: none">Send message</p>
+            <button id="sendChatSubmit" style="display: none"></button>
+        </form>
+    </body>
+
+    <style>
+        body{
+            background: #aaa;
+        }
+        #mainWrapper img{
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        #mainWrapper{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 70px 20px 90px 20px;
+        }
+        .user{
+            display: flex;
+            align-items: center;
+            background: #ccc;
+            padding: 10px 5px 10px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            opacity: 1;
+            transition: opacity 0.7s;
+        }
+        .user:hover{
+            background: #ddd;
+        }
+        .user > div{
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .setting3Buttons{
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            padding: 15px;
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+        }
+        .setting3Buttons:hover{
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .setting3Buttons > div{
+            min-width: 4px;
+            min-height: 4px;
+            border-radius: 50%;
+            background: #000;
+            pointer-events: none;
+        }
+
+        #updateForm, #deleteUserFrom{
+            z-index: 200;
+            position: absolute;
+            display: none;
+            flex-direction: column;
+            border-radius: 10px;
+        }
+        input, button, u{
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #updateForm > button:hover, #deleteUserFrom > u:hover{
+            background: rgb(25, 117, 255);
+        }
+        #updateForm > input{
+            border: solid 1px #999;
+            margin-top: -1px;
+        }
+        #updateForm > button, #deleteUserFrom > u, #chatWrapper > p{
+            background: #06f;
+            color: #fff;
+            cursor: pointer;
+        }
+        #deleteUserFrom{
+            gap: 1px;
+        }
+        u{
+            text-decoration: none;
+            text-align: center;
+        }
+        .infoWrapper{
+            margin: 0 15px;
+            pointer-events: none;
+        }
+
+        #searchButton, #sendMessageToAll{
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px 40px 20px 20px;
+            background: #ccc;
+            border-radius: 0 0 50px 0;
+            cursor: pointer;
+        }
+        #searchButton:hover, #sendMessageToAll:hover, #footer:hover{
+            background: #ddd;
+        }
+        #footer{
+            background: #ccc;
+            border: none;
+        }
+        #sendMessageToAll{
+            left: unset;
+            right: 0;
+            padding: 20px 20px 20px 40px;
+            border-radius: 0 0 0 50px;
+        }
+        #searchWrapper{
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            width: 10%;
+            gap: 10px;
+            top: 10px;
+            left: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s, width 0.5s;
+        }
+        #searchWrapper > input{
+            width: 19%;
+            background: #ddd;
+        }
+        #chatWrapper{
+            z-index: 100;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            transition: 0.5s;
+        }
+        #chatText{
+            padding: 20px 20px 50px 20px;
+            height: 300px;
+            width: 500px;
+            font-size: 20px;
+            resize: none;
+        }
+        #chatText::-webkit-scrollbar{
+            display: none;
+        }
+        #chatWrapper > p{
+            position: absolute;
+            bottom: 10px;
+            width: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #06f;
+            padding: 10px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #chatWrapper > p:hover{
+            background: rgb(33, 122, 255);
+        }
+
+        textarea{
+            background: #ddd;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+            border-radius: 30px;
+        }
+    </style>
+
+    <script>
+
+        let thisUserId = '';
+        let oldEmail = '';
+        let thisId = '';
+        let thisEmail = '';
+        let thisMessage = '';
+        let sendChatCase = 'sendToOne';
+
+        document.addEventListener('mousedown', function(evt){
+            if(evt.target.className == 'user'){
+                thisUserId = evt.target.id;
+                oldEmail = evt.target.email;
+                updateForm.style.display = 'flex';
+                updateForm.style.left = event.clientX - updateForm.offsetWidth/2 + 'px';
+                updateForm.style.top = event.clientY + document.body.scrollTop + 'px';
+                id.value = evt.target.idAddress;
+                userFirstName.value = evt.target.firstName;
+                userLastName.value = evt.target.lastName;
+                userEmail.value = evt.target.email;
+                userNumber.value = evt.target.number;
+                userAddress.value = evt.target.address;
+                userPassword.value = evt.target.password;
+            }
+            else if(evt.target.parentNode.tagName != 'FORM'
+            && evt.target.tagName != 'INPUT'
+            && evt.target.id != 'updateFormSubmit'
+            && evt.target.tagName != 'FORM')
+            updateForm.style.display = 'none';
+
+            if(evt.target.id == 'searchButton'
+            || evt.target.className == 'search'
+            || evt.target.id == 'searchWrapper'){
+                searchWrapper.style.opacity = 1;
+                searchWrapper.style.pointerEvents = 'unset';
+                searchWrapper.style.width = '100%';
+            }
+            else{
+                if(evt.target.className != 'user'){
+                    searchWrapper.style.opacity = 0;
+                    searchWrapper.style.pointerEvents = 'none';
+                    searchWrapper.style.width = '10%';
+                    emailSearch.value = '';
+                    addressSearch.value = '';
+                    numberSearch.value = '';
+                    setInterval(function(){search()});
+                }
+            }
+
+            if(evt.target.id == 'sendMessage'){
+                chatWrapper.style.display = 'flex';
+                sendChatCase = 'sendToOne';
+            }
+            else if(evt.target.parentNode.id != 'chatWrapper'){
+                chatWrapper.style.display = 'none';
+            }
+
+            if(evt.target.id == 'sendMessageToAll'){
+                sendChatCase = 'sendToAll';
+                chatWrapper.style.display = 'flex';
+                chatText.value = '';
+                sendChat.style.display = 'none';
+            }
+        });
+
+
+        document.addEventListener('click', function(evt){
+            if(evt.target.className == 'setting3Buttons'){
+                thisId = evt.target.id;
+                thisEmail = evt.target.email;
+                thisMessage = evt.target.message;
+                deleteUserFrom.style.display = 'flex';
+                deleteUserFrom.style.left = event.clientX - deleteUserFrom.offsetWidth - 20 + 'px';
+                deleteUserFrom.style.top = event.clientY + document.body.scrollTop - deleteUserFrom.offsetHeight/2 + 'px';
+            }
+            else
+            deleteUserFrom.style.display = 'none';
+
+            if(evt.target.id == 'deleteUser')
+            if(confirm('Delete user?') == true)
+            deleteUserFromSubmit.click();
+
+            if(evt.target.id == 'sendChat'){
+                if(sendChatCase == 'sendToAll'){
+                    setTimeout(function(){
+                        for(i = 0; i < document.getElementsByClassName('user').length; i++){
+                            thisId = document.getElementsByClassName('user')[i].idAddress;
+                            thisMessage = document.getElementsByClassName('user')[i].message;
+                            sendChatSubmit.click();
+                        }
+                        chatWrapper.style.display = 'none';
+                    });
+                }
+                else
+                sendChatSubmit.click();
+            }
+        });
+
+        document.addEventListener('input', function(evt){
+            if(evt.target.className == 'search')
+            search();
+
+            if(evt.target.id == 'chatText'){
+                if(chatText.value == '')
+                sendChat.style.display = 'none';
+                else
+                sendChat.style.display = 'block';
+            }
+        });
+
+        function search(){
+            if(emailSearch.value == ''
+            && addressSearch.value == ''
+            && numberSearch.value == '')
+            for(i = 0; i < document.querySelectorAll('.user').length; i++)
+            document.querySelectorAll('.user')[i].style.display = 'flex';
+            else{
+                for(i = 0; i < document.querySelectorAll('.user').length; i++){
+                    document.querySelectorAll('.user')[i].style.display = 'none';
+
+                    if(document.querySelectorAll('.user')[i].email.includes(emailSearch.value)
+                    && document.querySelectorAll('.user')[i].address.includes(addressSearch.value)
+                    && document.querySelectorAll('.user')[i].number.includes(numberSearch.value)) 
+                    document.querySelectorAll('.user')[i].style.display = 'flex';
+                }
+            }
+        }
+
+
+        for(i = 0; i < document.getElementsByClassName('idDB').length; i++){
+            let userInfo = {
+                id: document.getElementsByClassName('idDB')[i].value,
+                firstName: document.getElementsByClassName('userFirstNameDB')[i].value,
+                lastName: document.getElementsByClassName('userLastNameDB')[i].value,
+                email: document.getElementsByClassName('userEmailDB')[i].value,
+                number: document.getElementsByClassName('userNumberDB')[i].value,
+                address: document.getElementsByClassName('userAddressDB')[i].value,
+                password: document.getElementsByClassName('userPasswordDB')[i].value,
+                message: document.getElementsByClassName('userMessageDB')[i].value
+            }
+            let user = document.createElement('div');
+            user.id = userInfo.id + 'User';
+            user.className = 'user';
+            user.idAddress = userInfo.id;
+            user.firstName = userInfo.firstName;
+            user.lastName = userInfo.lastName;
+            user.email = userInfo.email;
+            user.number = userInfo.number;
+            user.address = userInfo.address;
+            user.password = userInfo.password;
+            user.message = userInfo.message;
+
+                let imgWrapper = document.createElement('div');
+                imgWrapper.style.pointerEvents = 'none';
+                    let img = document.createElement('img');
+                    img.src = '/user pictures/' + userInfo.email + '.jpg';
+                    img.src2 = '/icons/account.png';
+                imgWrapper.appendChild(img);
+
+                let infoWrapper = document.createElement('div');
+                infoWrapper.className = 'infoWrapper';
+                    let firstName = document.createElement('p');
+                    firstName.style.color = '#06f';
+                    firstName.style.fontWeight = 'bold';
+                    firstName.innerHTML = userInfo.firstName;
+                    let lastName = document.createElement('p');
+                    lastName.style.color = '#06f';
+                    lastName.style.fontWeight = 'bold';
+                    lastName.innerHTML = userInfo.lastName;
+                    let email = document.createElement('p');
+                    email.innerHTML = userInfo.email;
+                    let number = document.createElement('p');
+                    number.innerHTML = userInfo.number;
+                    let address = document.createElement('p');
+                    address.innerHTML = userInfo.address;
+                    let password = document.createElement('p');
+                    password.innerHTML = userInfo.password;
+                infoWrapper.appendChild(firstName);
+                infoWrapper.appendChild(lastName);
+                infoWrapper.appendChild(email);
+                infoWrapper.appendChild(number);
+                infoWrapper.appendChild(address);
+                infoWrapper.appendChild(password);
+
+                let setting3Buttons = document.createElement('div');
+                setting3Buttons.id = userInfo.id;
+                setting3Buttons.email = userInfo.email;
+                setting3Buttons.className = 'setting3Buttons';
+                setting3Buttons.message = userInfo.message;
+                    let div1 = document.createElement('div');
+                    let div2 = document.createElement('div');
+                    let div3 = document.createElement('div');
+                setting3Buttons.appendChild(div1);
+                setting3Buttons.appendChild(div2);
+                setting3Buttons.appendChild(div3);
+
+            user.appendChild(imgWrapper);
+            user.appendChild(infoWrapper);
+            user.appendChild(setting3Buttons);
+
+            mainWrapper.appendChild(user);
+        }
+
+        $(document).ready(function(){
+            $("#updateForm").on("submit", function(evt){
+                evt.preventDefault();
+                $.ajax({
+                    url: "/updateUser",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        _id: id.value,
+                        userFirstName: userFirstName.value,
+                        userLastName: userLastName.value,
+                        userEmail: userEmail.value,
+                        userNumber: userNumber.value,
+                        userAddress: userAddress.value,
+                        userPassword: userPassword.value,
+                        oldEmail: oldEmail
+                    }),
+                    success: function(){
+                        updateForm.style.display = 'none';
+                        alert('Updated successfully');
+                        localStorage.mustafaAltaieRestaurantMyFirstName = userFirstName.value;
+                        localStorage.mustafaAltaieRestaurantMyLastName = userLastName.value;
+                        localStorage.mustafaAltaieRestaurantMyNumber = userNumber.value;
+                        localStorage.mustafaAltaieRestaurantMyEmail = userEmail.value;
+                        localStorage.mustafaAltaieRestaurantMyAddress = userAddress.value;
+                        localStorage.mustafaAltaieRestaurantMyPassword = userPassword.value;
+                        document.getElementById(thisUserId).getElementsByTagName('P')[0].innerHTML = userFirstName.value;
+                        document.getElementById(thisUserId).getElementsByTagName('P')[1].innerHTML = userLastName.value;
+                        document.getElementById(thisUserId).getElementsByTagName('P')[2].innerHTML = userEmail.value;
+                        document.getElementById(thisUserId).getElementsByTagName('P')[3].innerHTML = userNumber.value;
+                        document.getElementById(thisUserId).getElementsByTagName('P')[4].innerHTML = userAddress.value;
+                        document.getElementById(thisUserId).getElementsByTagName('P')[5].innerHTML = userPassword.value;
+                    }
+                });
+            });
+
+            $("#deleteUserFrom").on("submit", function(evt){
+                evt.preventDefault();
+                $.ajax({
+                    url: "/deleteUser",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        _id: thisId,
+                        email: thisEmail
+                    }),
+                    success: function(){
+                        document.getElementById(thisId + 'User').style.opacity = 0;
+                        setTimeout(function(){
+                            document.getElementById(thisId + 'User').remove();
+                        }, 500);
+                    }
+                });
+            });
+
+            $("#chatWrapper").on("submit", function(evt){
+                evt.preventDefault();
+                $.ajax({
+                    url: "/sendChat",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        userMessage: thisMessage + chatText.value + '//and//',
+                        _id: thisId
+                    }),
+                    success: function(){
+                        if(sendChatCase == 'sendToOne'){
+                            chatWrapper.style.display = 'none';
+                            sendChat.style.display = 'none';
+                            document.getElementById(thisId).message = thisMessage + chatText.value + '//and//'
+                            chatText.value = '';
+                        }
+                        else{
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</html>

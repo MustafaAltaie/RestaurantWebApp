@@ -1,0 +1,42 @@
+#footer{
+    z-index: 150;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    border-top: solid 1px #111;
+    border-right: solid 1px #111;
+    border-radius: 0 40px 0 0;
+}
+#footer > div{
+    text-align: center;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+#footer > div:hover{
+    padding: 6px 20px 14px 20px;
+}
+#footer img{
+    width: 30px;
+    height: 30px;
+}
+
+@media only screen and (max-width: 1024px){
+    body #footer{
+        border-radius: 0;
+        width: 100%;
+        border-right: none;
+    }
+    body #footer > div{
+        padding: 20px 50px;
+        font-size: 30px;
+    }
+    body #footer > div:hover{
+        padding: 20px 50px;
+    }
+    body #footer img{
+        width: 80px;
+        height: 80px;
+    }
+}
